@@ -13,7 +13,7 @@
 ---
 
 ## 사용 기술 및 데이터
-- React Native(expo) ![expo](https://github.com/KimEunA97/PillGood/assets/124133601/c5845bc7-361b-4c82-b5ff-1c804c846fbe)
+- React Native(expo)
 - 공공데이터 API(e약은요)
 
 ---
