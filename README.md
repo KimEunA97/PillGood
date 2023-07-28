@@ -13,7 +13,7 @@
 ---
 
 ## 사용 기술 및 데이터
-- React Native(expo)
+- Expo
 - 공공데이터 API(e약은요)
 
 ---
