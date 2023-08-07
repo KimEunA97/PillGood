@@ -1,4 +1,3 @@
-![pillgood로고](https://github.com/KimEunA97/PillGood/assets/124133601/57091db3-f2b7-4755-84bf-a41115b46616)
 # PillGood
 사용자 친화적인 건강 알리미 서비스
 
