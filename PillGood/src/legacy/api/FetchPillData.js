@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { View, Text, Modal, TouchableOpacity } from 'react-native';
 
-import UserPressButton from '../Modal/UserPressButton';
-import SearchingModal from '../Modal/SearchingModal';
-import NameWithInputBox from '../Modal/NameWithInputBox';
-import TextInputWithPillInfo from '../Modal/TextInputWithPillInfo';
+import UserPressButton from '../../Modal/UserPressButton';
+import SearchingModal from '../../Modal/SearchingModal';
+import NameWithInputBox from '../../Modal/NameWithInputBox';
+import TextInputWithPillInfo from '../../Modal/TextInputWithPillInfo';
 import BoldText from '../component/BoldText';
 
 export default function FetchPillData({ name }) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { ItsDateTimePicker } from "../component/TimePicker";
+import { ItsDateTimePicker } from "../legacy/component/TimePicker";
 
 
 export default function ItsTimePicker() {
