@@ -4,13 +4,16 @@ dotenv.config();
 
 const API_KEY = process.env.API_KEY;
 
-const URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"
-const _URL = URL;
+const URL = `https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=`
+const _URL = URL + API_KEY + `&type=xml`;
 
-function fetch() {
+function fetchPillNameData(pillName) {
 
-  console.log(API_KEY);
+  const isName = `&itemName=`
+  const data = _URL + isName + pillName;
+  console.log(_URL + isName + pillName);
+  return data;
 
 }
 
-fetch();
+fetchPillNameData(name);
