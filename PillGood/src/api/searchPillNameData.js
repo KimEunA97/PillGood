@@ -1,4 +1,3 @@
-const exp = require('constants');
 const dotenv = require('dotenv')
 
 dotenv.config();
@@ -32,10 +31,7 @@ async function searchPillNameData(pillName) {
 
 }
 
-const abc = searchPillNameData(name);
-console.log(abc)
-
-
+module.exports = searchPillNameData;
 // export default searchPillNameData;
 
 // async function fetchedPillNameData(name) {
