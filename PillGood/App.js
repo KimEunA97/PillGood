@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, SafeAreaView, StyleSheet } from 'react-native';
-import NavigationBar from './src/components/navigationBar';
+import NavigationBar from './src/nav/NavigationBar';
 
 export default function App() {
-
 
   return (
     <View style={styles.container}>
@@ -15,7 +14,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 30,
-    backgroundColor: "blue"
+    flex: 1,
+    backgroundColor: "grey"
   }
 })

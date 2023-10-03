@@ -1,23 +1,39 @@
 import React from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 
 function NavigationBar() {
   return (
-    <View>
-      <Pressable/>
+    <View style={styles.navContainer}>
+      <Pressable style={styles.boxSt}>
+        <Text style={styles.text}>asd</Text>
+      </Pressable>
+      <Pressable style={styles.boxSt}>
+        <Text style={styles.text}>asd</Text>
+      </Pressable><Pressable style={styles.boxSt}>
+        <Text style={styles.text}>asd</Text>
+      </Pressable><Pressable style={styles.boxSt}>
+        <Text style={styles.text}>asd</Text>
+      </Pressable>
     </View>
   )
-
 }
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  navContainer: {
+    height: 100,
     flexDirection: "row",
     alignItems: "center",
-    height: 30,
-    backgroundColor: "blue"
+    justifyContent: "space-around",
+    backgroundColor: "green"
+  },
+  boxSt: {
+    alignItems : "center",
+    width: "25%",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight : "bold",
+    color: "white"
   }
 })
 
