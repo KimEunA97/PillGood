@@ -27,12 +27,16 @@ const styles = StyleSheet.create({
     backgroundColor: "green"
   },
   boxSt: {
-    alignItems : "center",
+    height: "100%",
+    borderColor: "white",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
     width: "25%",
   },
   text: {
     fontSize: 16,
-    fontWeight : "bold",
+    fontWeight: "bold",
     color: "white"
   }
 })
