@@ -1,3 +1,4 @@
+const exp = require('constants');
 const dotenv = require('dotenv')
 
 dotenv.config();
@@ -8,35 +9,47 @@ const API_KEY = process.env.API_KEY;
 const URL = `https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=`
 const _URL = URL + API_KEY + `&type=json`;
 
-function searchPillNameData(pillName) {
+const name = "타이레놀"
 
+async function searchPillNameData(pillName) {
 
   const isName = `&itemName=`
-  const data = _URL + isName + pillName;
-  // console.log(data)
-  return data;
-
-}
-
-async function fetchedPillNameData() {
-
-  const name = "타이레놀"
-  const test = searchPillNameData(name)
+  const getedPillData = _URL + isName + pillName;
+  // console.log(getedPillData)
 
   try {
-    const res = await fetch(test);
+    const res = await fetch(getedPillData);
     const data = await res.json();
-    console.dir(data.body.totalCount)
+    // console.dir(data.body)
 
-    // await fetch(test)
-    //   .then((res) => { res.json() })
-    //   .then((data) => console.dir(data))
+    return data;
 
   }
+
   catch (error) {
     console.error();
   }
 
 }
 
-fetchedPillNameData()
+const abc = searchPillNameData(name);
+console.log(abc)
+
+
+// export default searchPillNameData;
+
+// async function fetchedPillNameData(name) {
+
+//   const test = searchPillNameData(name)
+
+//   try {
+//     const res = await fetch(test);
+//     const data = await res.json();
+//     console.dir(data.body.totalCount)
+//   }
+
+//   catch (error) {
+//     console.error();
+//   }
+
+// }
