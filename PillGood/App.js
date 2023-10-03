@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, SafeAreaView, StyleSheet } from 'react-native';
+
 import NavigationBar from './src/nav/NavigationBar';
+
+import PillDetailScreen from './src/pages/PillDetailScreen';
+import SearchPillScreen from './src/pages/SearchPillScreen';
+import TodayPillScreen from './src/pages/TodayPillScreen';
+import UserSettingScreen from './src/pages/UserSettingScreen';
 
 export default function App() {
 
-  const [isPage, setPage] = useState();
+  const [currentPage, setCurrentPage] = useState('TodayPillScreen')
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
   return (
-    <View style={styles.container}>
-      <NavigationBar />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <NavigationBar onPageChange={handleNavigation} currentPage={currentPage} />
+        {currentPage === "TodayPillScreen" && <TodayPillScreen />}
+        {currentPage === "SearchPillScreen" && <SearchPillScreen />}
+        {currentPage === "PillDetailScreen" && <PillDetailScreen />}
+        {currentPage === "UserSettingScreen" && <UserSettingScreen />}
+      </View>
+    </SafeAreaView >
   );
 
 }

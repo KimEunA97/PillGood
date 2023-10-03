@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 
-function NavigationBar() {
+function NavigationBar({ onPageChange, currentPage }) {
 
   const tabs = [
     { id: 'TodayPillScreen', label: '오늘의약' },
@@ -10,12 +10,21 @@ function NavigationBar() {
     { id: 'UserSettingScreen', label: '설정' },
   ];
 
+  const [activeTab, setActiveTab] = useState('TodayPillScreen');
+
+  function handlePageChange(id) {
+    setActiveTab(id);
+    onPageChange(id);
+  }
+
+
   return (
     <View style={styles.navContainer}>
       {tabs.map((tabs) => (
         <Pressable
+          onPress={() => handlePageChange(tabs.id)}
           key={tabs.id}
-          style={styles.boxSt}>
+          style={[styles.boxSt, { backgroundColor: tabs.id === activeTab ? '#55B0AA' : 'transparent' }]}>
           <Text
             style={styles.text}>
             {tabs.label}
