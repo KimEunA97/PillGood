@@ -19,18 +19,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "center",
-
   },
   box: {
-    width : "60vw",
-    height : "15vh",
+    width: "60vw",
+    height: "20vh",
     borderWidth: 1,
+    borderRadius : 5,
     borderColor: "white",
-    justifyContent : "center",
-    alignItems : "center"
+    backgroundColor: "#167286",
+    justifyContent: "center",
+    alignItems: "center"
   },
   text: {
     color: "white",
-
   }
 })
