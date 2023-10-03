@@ -1,10 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Touchable } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 function NavigationBar() {
   return (
     <View>
-      <Touchable style={styles.container} />
     </View>
   )
 
