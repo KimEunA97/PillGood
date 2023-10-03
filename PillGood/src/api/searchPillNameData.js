@@ -8,35 +8,25 @@ const API_KEY = process.env.API_KEY;
 const URL = `https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=`
 const _URL = URL + API_KEY + `&type=json`;
 
-function searchPillNameData(pillName) {
-
+async function searchPillNameData(pillName) {
 
   const isName = `&itemName=`
-  const data = _URL + isName + pillName;
-  // console.log(data)
-  return data;
-
-}
-
-async function fetchedPillNameData() {
-
-  const name = "타이레놀"
-  const test = searchPillNameData(name)
+  const reqURL = _URL + isName + pillName;
+  // console.log(reqURL)
 
   try {
-    const res = await fetch(test);
+    const res = await fetch(reqURL);
     const data = await res.json();
-    console.dir(data.body.totalCount)
+    // console.dir(data.body)
 
-    // await fetch(test)
-    //   .then((res) => { res.json() })
-    //   .then((data) => console.dir(data))
+    return data;
 
   }
+
   catch (error) {
     console.error();
   }
 
 }
 
-fetchedPillNameData()
+module.exports = searchPillNameData;
