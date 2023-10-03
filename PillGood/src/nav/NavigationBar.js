@@ -24,7 +24,7 @@ function NavigationBar({ onPageChange, currentPage }) {
         <Pressable
           onPress={() => handlePageChange(tabs.id)}
           key={tabs.id}
-          style={[styles.boxSt, { backgroundColor: tabs.id === activeTab ? '#55B0AA' : 'transparent' }]}>
+          style={[styles.boxSt, { backgroundColor: tabs.id === activeTab ? '#356562' : '#55B0AA' }]}>
           <Text
             style={styles.text}>
             {tabs.label}
