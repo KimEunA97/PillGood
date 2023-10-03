@@ -1,9 +1,10 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 
 function NavigationBar() {
   return (
     <View>
+      <Pressable/>
     </View>
   )
 
