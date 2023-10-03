@@ -5,7 +5,7 @@ export default function UserSettingScreen() {
 
   return (
     <View>
-
+      <Text>설정</Text>
     </View>
   )
 

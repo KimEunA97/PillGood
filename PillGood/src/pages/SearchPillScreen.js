@@ -5,7 +5,7 @@ export default function SearchPillScreen() {
 
   return (
     <View>
-
+<Text>검색</Text>
     </View>
   )
 

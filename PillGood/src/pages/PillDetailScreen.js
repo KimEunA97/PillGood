@@ -5,7 +5,7 @@ export default function PillDetailScreen() {
 
   return (
     <View>
-
+      <Text>상세보기</Text>
     </View>
   )
 

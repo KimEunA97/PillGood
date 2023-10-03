@@ -5,7 +5,7 @@ export default function TodayPillScreen() {
 
   return (
     <View>
-
+      <Text>오늘의약</Text>
     </View>
   )
 
