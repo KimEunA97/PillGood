@@ -2,18 +2,26 @@ import React from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 
 function NavigationBar() {
+
+  const tabs = [
+    { id: 'TodayPillScreen', label: '오늘의약' },
+    { id: 'PillDetailScreen', label: '상세보기' },
+    { id: 'SearchPillScreen', label: '검색' },
+    { id: 'UserSettingScreen', label: '설정' },
+  ];
+
   return (
     <View style={styles.navContainer}>
-      <Pressable style={styles.boxSt}>
-        <Text style={styles.text}>asd</Text>
-      </Pressable>
-      <Pressable style={styles.boxSt}>
-        <Text style={styles.text}>asd</Text>
-      </Pressable><Pressable style={styles.boxSt}>
-        <Text style={styles.text}>asd</Text>
-      </Pressable><Pressable style={styles.boxSt}>
-        <Text style={styles.text}>asd</Text>
-      </Pressable>
+      {tabs.map((tabs) => (
+        <Pressable
+          key={tabs.id}
+          style={styles.boxSt}>
+          <Text
+            style={styles.text}>
+            {tabs.label}
+          </Text>
+        </Pressable>
+      ))}
     </View>
   )
 }
