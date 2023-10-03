@@ -8,8 +8,6 @@ const API_KEY = process.env.API_KEY;
 const URL = `https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=`
 const _URL = URL + API_KEY + `&type=json`;
 
-const name = "타이레놀"
-
 async function searchPillNameData(pillName) {
 
   const isName = `&itemName=`
