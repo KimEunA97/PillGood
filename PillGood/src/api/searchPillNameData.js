@@ -11,11 +11,11 @@ const _URL = URL + API_KEY + `&type=json`;
 async function searchPillNameData(pillName) {
 
   const isName = `&itemName=`
-  const getedPillData = _URL + isName + pillName;
-  // console.log(getedPillData)
+  const reqURL = _URL + isName + pillName;
+  // console.log(reqURL)
 
   try {
-    const res = await fetch(getedPillData);
+    const res = await fetch(reqURL);
     const data = await res.json();
     // console.dir(data.body)
 
