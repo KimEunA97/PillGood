@@ -32,20 +32,3 @@ async function searchPillNameData(pillName) {
 }
 
 module.exports = searchPillNameData;
-// export default searchPillNameData;
-
-// async function fetchedPillNameData(name) {
-
-//   const test = searchPillNameData(name)
-
-//   try {
-//     const res = await fetch(test);
-//     const data = await res.json();
-//     console.dir(data.body.totalCount)
-//   }
-
-//   catch (error) {
-//     console.error();
-//   }
-
-// }
