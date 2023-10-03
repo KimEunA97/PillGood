@@ -1,11 +1,11 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 export default function SearchPillScreen() {
 
   return (
     <View>
-<Text>검색</Text>
+      <Text>검색</Text>
     </View>
   )
 
