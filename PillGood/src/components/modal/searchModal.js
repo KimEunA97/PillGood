@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import { Modal, Text, StyleSheet, View } from "react-native";
+import { Modal, Text, StyleSheet, View, TouchableWithoutFeedback, Pressable } from "react-native";
 
-function SearchModal({isVisible, onClose}) {
+function SearchModal({ isVisible, onClose }) {
 
   return (
-    <Modal
-      transparent={true}
-      presentationStyle={"fullScreen"}
-      visible={isVisible}
-      animationType="fade"
-    >
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <Text>asdasdasd</Text>
-        </View>
-      </View>
+    <Pressable onPress={onClose}>
+      <Modal
+        transparent={true}
+        presentationStyle={"fullScreen"}
+        visible={isVisible}
+        animationType="fade"
 
-    </Modal>
+      >
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Text>asdasdasd</Text>
+          </View>
+        </View>
+      </Modal>
+    </Pressable>
   )
 }
 
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor : "rgba(0,0,0,0.5)"
+    backgroundColor: "rgba(0,0,0,0.5)"
 
   },
   content: {
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
     height: "70%",
     backgroundColor: "#007088",
 
-    borderRadius : 10,
+    borderRadius: 10,
 
   }
 
