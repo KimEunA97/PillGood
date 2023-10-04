@@ -7,6 +7,7 @@ import PillDetailScreen from './src/pages/PillDetailScreen';
 import SearchPillScreen from './src/pages/SearchPillScreen';
 import TodayPillScreen from './src/pages/TodayPillScreen';
 import UserSettingScreen from './src/pages/UserSettingScreen';
+import CreateModal from './src/modal/createModal';
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
+        <CreateModal />
         <NavigationBar onPageChange={handleNavigation} currentPage={currentPage} />
         {currentPage === "TodayPillScreen" && <TodayPillScreen />}
         {currentPage === "SearchPillScreen" && <SearchPillScreen />}
