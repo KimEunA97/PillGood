@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Text, StyleSheet, View } from "react-native";
 
-function CreateModal() {
+function SearchModal() {
 
   const [isVisible, setVisible] = useState(true)
 
@@ -22,7 +22,7 @@ function CreateModal() {
   )
 }
 
-export default CreateModal;
+export default SearchModal;
 
 const styles = StyleSheet.create({
 
