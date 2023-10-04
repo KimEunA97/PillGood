@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Text, StyleSheet, View } from "react-native";
 
-function SearchModal() {
-
-  const [isVisible, setVisible] = useState(true)
+function SearchModal({isVisible, onClose}) {
 
   return (
     <Modal

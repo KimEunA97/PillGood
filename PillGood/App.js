@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, SafeAreaView, StyleSheet } from 'react-native';
 
-import NavigationBar from './src/nav/NavigationBar';
+import NavigationBar from './src/components/nav/NavigationBar';
 
 import PillDetailScreen from './src/pages/PillDetailScreen';
 import SearchPillScreen from './src/pages/SearchPillScreen';
 import TodayPillScreen from './src/pages/TodayPillScreen';
 import UserSettingScreen from './src/pages/UserSettingScreen';
-import SearchModal from './src/modal/searchModal';
+import SearchModal from './src/components/modal/searchModal';
 
 export default function App() {
 
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <SearchModal />
+        <SearchModal isVisible={isModalVisible} />
         <NavigationBar onPageChange={handleNavigation} currentPage={currentPage} />
         {currentPage === "TodayPillScreen" && <TodayPillScreen />}
         {currentPage === "SearchPillScreen" && <SearchPillScreen />}

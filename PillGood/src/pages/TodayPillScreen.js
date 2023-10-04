@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
+import SearchModal from "../components/modal/searchModal";
 
 export default function TodayPillScreen() {
 
+  const [isModalVisible, setModalVisible] = useState(false)
+  const openModal = () => {
+    setModalVisible(true)
+  }
+  const closeModal = () => {
+    setModalVisible(false)
+  }
+
   return (
     <View style={styles.container}>
-      <Pressable style={styles.box}>
+      <Pressable style={styles.box} onPress={openModal}>
         <Text style={styles.text}>Press it. img section</Text>
       </Pressable>
-    </View>
+      <SearchModal isVisible={isModalVisible} onClose={closeModal} />
+    </View >
   )
 
 }
@@ -24,7 +34,7 @@ const styles = StyleSheet.create({
     width: "60vw",
     height: "20vh",
     borderWidth: 1,
-    borderRadius : 5,
+    borderRadius: 5,
     borderColor: "white",
     backgroundColor: "#167286",
     justifyContent: "center",
