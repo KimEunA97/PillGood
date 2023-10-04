@@ -18,7 +18,6 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <SearchModal isVisible={isModalVisible} />
         <NavigationBar onPageChange={handleNavigation} currentPage={currentPage} />
         {currentPage === "TodayPillScreen" && <TodayPillScreen />}
         {currentPage === "SearchPillScreen" && <SearchPillScreen />}
