@@ -15,8 +15,16 @@ function SearchModal({ isVisible, onClose }) {
         <View style={styles.container}>
           <View style={styles.content}>
             <Text>asdasdasd</Text>
+
+            <View style={{ flexDirection: "row", margin : 10, }}>
+              <Pressable onPress={onClose} style={{ width: 100, height: 100, backgroundColor: "red" }} />
+              <Pressable onPress={onClose} style={{ width: 100, height: 100, backgroundColor: "blue" }} />
+            </View>
+
           </View>
         </View>
+
+
       </Modal>
     </Pressable>
   )
