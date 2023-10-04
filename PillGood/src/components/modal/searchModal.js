@@ -21,16 +21,17 @@ function SearchModal({ isVisible, onClose }) {
       >
         <View style={styles.content}>
 
-          <Text style={styles.textStyle}>asdasdasd</Text>
+          <Text style={styles.textStyle}>약이름</Text>
           <TextInput
             style={styles.textInputStyle}
             onChangeText={onChangeText}
             value={text}
           />
+
           {/* 상호작용 버튼 */}
-          <View style={{ flexDirection: "row", margin: 10, }}>
+          <View style={{ width: 200, height: 100, flexDirection: "row", margin: 10, }}>
             <Pressable onPress={onClose} style={{ width: "50%", height: "30%", backgroundColor: "red" }} />
-            <Pressable onPress={onClose} style={{ width: 100, height: 100, backgroundColor: "blue" }} />
+            <Pressable onPress={onClose} style={{ width: "50%", height: "30%", backgroundColor: "blue" }} />
           </View>
 
         </View>
@@ -59,6 +60,8 @@ const styles = StyleSheet.create({
 
   },
   textInputStyle: {
+    width: "80%",
+    height: "5%",
     backgroundColor: "white"
   },
   textStyle: {
