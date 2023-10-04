@@ -5,8 +5,6 @@ function SearchModal({ isVisible, onClose }) {
 
   const [text, onChangeText] = useState('');
 
-  //내부를 눌러도 닫히지 않는 함수
-
   return (
 
     <Modal
