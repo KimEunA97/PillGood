@@ -9,7 +9,6 @@ function SearchModal({ isVisible, onClose }) {
 
     <Modal
       transparent={true}
-      presentationStyle={"fullScreen"}
       visible={isVisible}
       animationType="fade"
     >
@@ -23,6 +22,8 @@ function SearchModal({ isVisible, onClose }) {
           <TextInput
             style={styles.textInputStyle}
             onChangeText={onChangeText}
+            placeholder="약이름"
+            placeholderTextColor={"grey"}
             value={text}
           />
 
