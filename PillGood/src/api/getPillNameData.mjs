@@ -1,6 +1,6 @@
-// import './loadEnv.js'
-import dotenv from 'dotenv';
-dotenv.config();
+import './loadEnv.mjs'
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 async function getPillNameData(pillName) {
   const API_KEY = process.env.API_KEY;
@@ -16,7 +16,7 @@ async function getPillNameData(pillName) {
     return data;
   }
   catch (error) {
-    console.error("error");
+    console.error("error", error);
   }
 }
 getPillNameData("타이레놀")
