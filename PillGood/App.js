@@ -23,9 +23,7 @@ export default function App() {
         {currentPage === "SearchPillScreen" && <SearchPillScreen />}
         {currentPage === "PillDetailScreen" && <PillDetailScreen />}
         {currentPage === "UserSettingScreen" && <UserSettingScreen />}
-        <Fetbtn>
-        </Fetbtn>
-          <Text>?</Text>
+        <Fetbtn/>
       </View>
     </SafeAreaView >
   );
