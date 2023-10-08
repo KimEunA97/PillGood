@@ -1,6 +1,6 @@
-import { Pressable } from "react-native"
+import { Pressable, View, Text } from "react-native"
 import getPillNameData from "./getPillNameData.mjs"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Fetbtn = () => {
 
@@ -10,9 +10,13 @@ const Fetbtn = () => {
     getPillNameData((data) => setData(data));
   }
 
+  useEffect()
+
   return (
     <View>
-      <Pressable onPress={handleData}>{data}</Pressable>
+      <Pressable onPress={handleData}>
+        <Text>{data}</Text>
+      </Pressable>
     </View>
   )
 
