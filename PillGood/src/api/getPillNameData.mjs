@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-async function searchPillNameData(pillName) {
+async function getPillNameData(pillName) {
 
   const API_KEY = process.env.API_KEY;
   const URL = `https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=`
@@ -21,3 +21,4 @@ async function searchPillNameData(pillName) {
   }
 }
 
+export default getPillNameData;
