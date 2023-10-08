@@ -25,20 +25,22 @@ export default function TodayPillScreen() {
   return (
     <View style={styles.container}>
       <Pressable style={styles.box} onPress={openModal}>
-        <Text style={styles.text}>Press it. img section</Text>
+        <Text style={styles.text}>내 약 찾아보기</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      {flag && <PillList items={list} />}
+      <View>
+        {flag && <PillList items={list} />}
+      </View>
     </View >
   )
-
 }
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
-    flexDirection: "row",
+    flexDirection: "column",
     alignContent: "center",
+    alignItems: "center",
     justifyContent: "center",
   },
   box: {
