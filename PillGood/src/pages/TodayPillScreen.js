@@ -15,15 +15,9 @@ export default function TodayPillScreen() {
     setModalVisible(false)
   }
   const handleConfirm = (confirmedData) => {
-    console.log("confirmedData:", confirmedData);
-    console.log("list:", list);
     setList(confirmedData);
     closeModal();
   }
-
-  useEffect(() => {
-    console.log("list has changed:", list);
-  }, [list]);
 
   return (
     <View style={styles.container}>

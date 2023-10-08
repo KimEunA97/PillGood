@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native"; 
+import { View, Text } from "react-native";
 
 const PillList = ({ items }) => {
+
+  const itemList = Array.isArray(items) ? items : [];
   return (
     <View>
-      {items.map((item, index) => (
+      {itemList.map((item, index) => (
         <Text key={index}>{item}</Text>
       ))}
     </View>
