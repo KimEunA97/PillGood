@@ -8,14 +8,18 @@ function SearchModal({ isVisible, onClose, confirm }) {
 
   const handleConfirm = () => {
     // console.log("text", text)
-    setPillName(text)
-    console.log("pillName", pillName)
-    confirm(pillName)
+    let textArr = [text];
+    setPillName(textArr)
+    confirm(pillName);
   }
 
-  useEffect(() => {
-    console.log("yes", pillName)
-  }, [pillName])
+  // useEffect(() => {
+  //   console.log("mount", pillName)
+  //   if(pillName>0){
+  //     setPillName(text)
+  //   }
+  //   return console.log("unmount",pillName)
+  // },)
 
   return (
     <Modal

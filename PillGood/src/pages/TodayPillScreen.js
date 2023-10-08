@@ -9,10 +9,6 @@ export default function TodayPillScreen() {
   const [isModalVisible, setModalVisible] = useState(false)
   const [list, setList] = useState([]);
 
-  useEffect(() => {
-    console.log(list, "LIST")
-  }, [flag, list])
-
   const openModal = () => {
     setModalVisible(true)
   }
@@ -31,9 +27,7 @@ export default function TodayPillScreen() {
         <Text style={styles.text}>Press it. img section</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      {flag && list.map((item, index) => (
-        <PillList items={item} key={index} />
-      ))}
+      {flag && <PillList items={list} />}
     </View >
   )
 
