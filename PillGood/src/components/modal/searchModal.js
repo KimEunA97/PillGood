@@ -6,8 +6,7 @@ function SearchModal({ isVisible, onClose, confirm }) {
   const [text, onChangeText] = useState('');
 
   const handleConfirm = () => {
-    const textArray = [text];
-    confirm(textArray);
+    confirm(text);
   }
 
   return (
