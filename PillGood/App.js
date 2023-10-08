@@ -7,7 +7,6 @@ import PillDetailScreen from './src/pages/PillDetailScreen';
 import SearchPillScreen from './src/pages/SearchPillScreen';
 import TodayPillScreen from './src/pages/TodayPillScreen';
 import UserSettingScreen from './src/pages/UserSettingScreen';
-import SearchModal from './src/components/modal/searchModal';
 
 export default function App() {
 

@@ -5,8 +5,13 @@ import PillList from "../components/PillList";
 
 export default function TodayPillScreen() {
 
+  const [flag, setFlag] = useState(false)
   const [isModalVisible, setModalVisible] = useState(false)
   const [list, setList] = useState([]);
+
+  useEffect(() => {
+    console.log(list, "LIST")
+  }, [flag, list])
 
   const openModal = () => {
     setModalVisible(true)
@@ -17,6 +22,7 @@ export default function TodayPillScreen() {
   const handleConfirm = (confirmedData) => {
     setList(confirmedData);
     closeModal();
+    setFlag(true)
   }
 
   return (
@@ -25,8 +31,8 @@ export default function TodayPillScreen() {
         <Text style={styles.text}>Press it. img section</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      {list.map((index) => (
-        <PillList items={list} key={index} />
+      {flag && list.map((item, index) => (
+        <PillList items={item} key={index} />
       ))}
     </View >
   )

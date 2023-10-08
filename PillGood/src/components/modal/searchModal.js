@@ -1,16 +1,23 @@
-import React, { useState } from "react";
-import { Modal, Text, StyleSheet, View, TouchableWithoutFeedback, Pressable, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Modal, Text, StyleSheet, View, Pressable, TextInput } from "react-native";
 
 function SearchModal({ isVisible, onClose, confirm }) {
 
   const [text, onChangeText] = useState('');
+  const [pillName, setPillName] = useState([]);
 
   const handleConfirm = () => {
-    confirm(text);
+    // console.log("text", text)
+    setPillName(text)
+    console.log("pillName", pillName)
+    confirm(pillName)
   }
 
-  return (
+  useEffect(() => {
+    console.log("yes", pillName)
+  }, [pillName])
 
+  return (
     <Modal
       transparent={true}
       visible={isVisible}
