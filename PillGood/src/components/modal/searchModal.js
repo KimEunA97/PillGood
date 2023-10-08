@@ -11,14 +11,6 @@ function SearchModal({ isVisible, onClose, confirm }) {
     onClose();
   }
 
-  // useEffect(() => {
-  //   console.log("mount", pillName)
-  //   if(pillName>0){
-  //     setPillName(text)
-  //   }
-  //   return console.log("unmount",pillName)
-  // },)
-
   return (
     <Modal
       transparent={true}
