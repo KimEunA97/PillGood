@@ -28,7 +28,7 @@ export default function TodayPillScreen() {
         <Text style={styles.text}>내 약 찾아보기</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      <View>
+      <View style={styles.listStyle}>
         {flag && <PillList items={list} />}
       </View>
     </View >
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
+  },
+  listStyle:{
+    marginTop: 30,
   },
   box: {
     width: "60vw",
