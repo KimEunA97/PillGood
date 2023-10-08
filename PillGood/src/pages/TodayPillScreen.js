@@ -25,8 +25,8 @@ export default function TodayPillScreen() {
         <Text style={styles.text}>Press it. img section</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      {list.map((items, index) => (
-        <PillList items={items} key={index} />
+      {list.map((index) => (
+        <PillList items={list} key={index} />
       ))}
     </View >
   )
