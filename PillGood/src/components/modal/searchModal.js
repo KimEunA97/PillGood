@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Text, StyleSheet, View, TouchableWithoutFeedback, Pressable, TextInput } from "react-native";
 
-function SearchModal({ isVisible, onClose }) {
+function SearchModal({ isVisible, onClose, confirm }) {
 
+  const [pillName, setPillName] = useState([]);
   const [text, onChangeText] = useState('');
+
+  const handleConfirm = () => {
+    setPillName(text);
+    confirm(text);
+  }
 
   return (
 
@@ -29,7 +35,7 @@ function SearchModal({ isVisible, onClose }) {
 
           {/* 상호작용 버튼 */}
           <View style={{ width: 200, height: 100, flexDirection: "row", margin: 10, }}>
-            <Pressable onPress={onClose} style={{ width: "50%", height: "30%", backgroundColor: "red" }} />
+            <Pressable onPress={handleConfirm} style={{ width: "50%", height: "30%", backgroundColor: "red" }} />
             <Pressable onPress={onClose} style={{ width: "50%", height: "30%", backgroundColor: "blue" }} />
           </View>
 
