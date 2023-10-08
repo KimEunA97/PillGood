@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import SearchModal from "../components/modal/searchModal";
+import PillList from "../components/PillList";
 
 export default function TodayPillScreen() {
 
@@ -21,9 +22,8 @@ export default function TodayPillScreen() {
   }
 
   useEffect(() => {
-    // list가 변경될 때마다 실행됩니다.
     console.log("list has changed:", list);
-  }, [list]); // list가 변경될 때만 useEffect가 실행됩니다.
+  }, [list]);
 
   return (
     <View style={styles.container}>
@@ -31,8 +31,8 @@ export default function TodayPillScreen() {
         <Text style={styles.text}>Press it. img section</Text>
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
-      {list.map((items) => (
-        <PillList items={items} key={items.id} />
+      {list.map((items, index) => (
+        <PillList items={items} key={index} />
       ))}
     </View >
   )

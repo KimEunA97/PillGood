@@ -3,12 +3,11 @@ import { Modal, Text, StyleSheet, View, TouchableWithoutFeedback, Pressable, Tex
 
 function SearchModal({ isVisible, onClose, confirm }) {
 
-  const [pillName, setPillName] = useState([]);
   const [text, onChangeText] = useState('');
 
   const handleConfirm = () => {
-    setPillName(text);
-    confirm(text);
+    const textArray = [text];
+    confirm(textArray);
   }
 
   return (
