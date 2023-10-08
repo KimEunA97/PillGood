@@ -5,7 +5,6 @@
 // config();
 import Config from 'react-native-config'
 
-
 async function getPillNameData(pillName) {
   const API_KEY = Config.API_KEY;
   console.log(API_KEY)

@@ -1,16 +1,15 @@
 import { Pressable, View, Text } from "react-native"
-import getPillNameData from "./getPillNameData.mjs"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import getPillNameData from "./getPillNameData.js"
 
 const Fetbtn = () => {
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState("");
 
-  const handleData = () => {
-    getPillNameData((data) => setData(data));
+  const handleData = async () => {
+    const fetchedData = await getPillNameData("타이레놀");
+    setData(JSON.stringify(fetchedData));
   }
-
-  useEffect()
 
   return (
     <View>
@@ -19,7 +18,6 @@ const Fetbtn = () => {
       </Pressable>
     </View>
   )
-
 }
 
 export default Fetbtn;
