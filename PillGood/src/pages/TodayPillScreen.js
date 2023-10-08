@@ -16,9 +16,10 @@ export default function TodayPillScreen() {
     setModalVisible(false)
   }
   const handleConfirm = (confirmedData) => {
-    setList(confirmedData);
-    closeModal();
     setFlag(true)
+    setList((prevList) => [...prevList, ...confirmedData]);
+    console.log(list)
+    closeModal();
   }
 
   return (

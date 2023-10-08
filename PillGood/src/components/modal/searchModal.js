@@ -4,13 +4,11 @@ import { Modal, Text, StyleSheet, View, Pressable, TextInput } from "react-nativ
 function SearchModal({ isVisible, onClose, confirm }) {
 
   const [text, onChangeText] = useState('');
-  const [pillName, setPillName] = useState([]);
 
   const handleConfirm = () => {
-    // console.log("text", text)
-    let textArr = [text];
-    setPillName(textArr)
-    confirm(pillName);
+    confirm([text]);
+    onChangeText('');
+    onClose();
   }
 
   // useEffect(() => {
