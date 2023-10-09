@@ -14,10 +14,10 @@ function pillModel(data) {
   }
   return result;
 }
-export function setModelData() {
+export function setModelData(data) {
 
-  const totalCount = apiResponseData.body.totalCount;
-  const items = apiResponseData.body.items.item;
+  const totalCount = data.body.totalCount;
+  const items = data.body.items.item;
   const arr = items.map((item) => {
     const result = pillModel({ body: { items: { item } } });
     result.totalCount = totalCount;
