@@ -22,6 +22,10 @@ export default function TodayPillScreen() {
     closeModal();
   }
 
+  useEffect(()=>{
+
+  },[list])
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.box} onPress={openModal}>
