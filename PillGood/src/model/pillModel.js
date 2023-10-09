@@ -14,43 +14,14 @@ function pillModel(data) {
   }
   return result;
 }
+export function setModelData() {
 
-// 임의의 API 응답 데이터를 생성합니다.
-const apiResponseData = {
-  body: {
-    totalCount: 3,
-    items: {
-      item: [
-        {
-          itemName: "테스트 약 이름 1",
-          efcyQesitm: "테스트 증상 1",
-          USE_METHOD_QESITM: "테스트 사용법 1",
-          ATPN_WARN_QESITM: "테스트 주의사항 1"
-        },
-        {
-          itemName: "테스트 약 이름 2",
-          efcyQesitm: "테스트 증상 2",
-          USE_METHOD_QESITM: "테스트 사용법 2",
-          ATPN_WARN_QESITM: "테스트 주의사항 2"
-        },
-        {
-          itemName: "테스트 약 이름 3",
-          efcyQesitm: "테스트 증상 3",
-          USE_METHOD_QESITM: "테스트 사용법 3",
-          ATPN_WARN_QESITM: "테스트 주의사항 3"
-        }
-      ]
-    }
-  }
-};
-
-const totalCount = apiResponseData.body.totalCount;
-const items = apiResponseData.body.items.item;
-const arr = items.map((item) => {
-  const result = pillModel({ body: { items: { item } } });
-  result.totalCount  = totalCount;
-  return result;
-})
-
-// console.dir(arr, "arr");
-// console.log(arr[2].totalCount)
+  const totalCount = apiResponseData.body.totalCount;
+  const items = apiResponseData.body.items.item;
+  const arr = items.map((item) => {
+    const result = pillModel({ body: { items: { item } } });
+    result.totalCount = totalCount;
+    return result;
+  })
+  return arr;
+}
