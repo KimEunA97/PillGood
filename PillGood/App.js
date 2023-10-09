@@ -7,7 +7,6 @@ import PillDetailScreen from './src/pages/PillDetailScreen';
 import SearchPillScreen from './src/pages/SearchPillScreen';
 import TodayPillScreen from './src/pages/TodayPillScreen';
 import UserSettingScreen from './src/pages/UserSettingScreen';
-import Fetbtn from './src/api/Fetbtn';
 
 export default function App() {
 
@@ -23,7 +22,6 @@ export default function App() {
         {currentPage === "SearchPillScreen" && <SearchPillScreen />}
         {currentPage === "PillDetailScreen" && <PillDetailScreen />}
         {currentPage === "UserSettingScreen" && <UserSettingScreen />}
-        <Fetbtn/>
       </View>
     </SafeAreaView >
   );
