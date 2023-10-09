@@ -18,7 +18,7 @@ function pillModel(data) {
 // 임의의 API 응답 데이터를 생성합니다.
 const apiResponseData = {
   body: {
-    totalCount : 3,
+    totalCount: 3,
     items: {
       item: [
         {
@@ -44,8 +44,13 @@ const apiResponseData = {
   }
 };
 
+const totalCount = apiResponseData.body.totalCount;
 const items = apiResponseData.body.items.item;
-const arr = items.map((item) => pillModel({ body: { items: { item } } }))
+const arr = items.map((item) => {
+  const result = pillModel({ body: { items: { item } } });
+  result.totalCount  = totalCount;
+  return result;
+})
 
 // console.dir(arr, "arr");
-console.log(arr[2].name, "arr2")
+// console.log(arr[2].totalCount)
