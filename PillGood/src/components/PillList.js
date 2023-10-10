@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Modal, ScrollView, Pressable } from "react-native";
 
 import getPillNameData from "../api/getPillNameData";
 import { setModelData } from "../model/pillModel";
@@ -45,28 +45,25 @@ const PillList = ({ items }) => {
     fetchData();
   }, [items]);
 
-  const renderItems = (totalCount) => {
-    const components = [];
-    for (let i = 0; i < totalCount; i++) {
-      components.push(
-        <Text key={i}>Item {i + 1}</Text>
-      );
-    }
-    return components;
-  };
   return (
     <View>
       {data.map((item, index) => (
         <View key={index} style={styles.container}>
-          {item.totalCount === 0 && (
+          {count === 0 && (
             <Text key={index}>It's zero</Text>
           )}
-          {item.totalCount === 1 && (
+          {count === 1 && (
             <Text key={index}>It's one</Text>
           )}
-          {item.totalCount > 1 && (
-            <Text key={index}>{item.items[index].name}</Text>
-          )}
+          {count > 1 && (
+            Array.from({ length: count }).map((_, index) => (
+                <Pressable>
+                  <View key={index} style={styles.container}>
+                    <Text>{item.items[index] && item.items[index].name}</Text>
+                  </View>
+                </Pressable>
+            ))
+          )} 
         </View>
       ))}
     </View>
