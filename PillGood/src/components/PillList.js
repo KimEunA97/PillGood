@@ -30,15 +30,17 @@ const PillList = ({ items }) => {
 
   return (
     <View>
-      {data.map((item, index) => (
+      {data.map((item, index) =>{
+        console.log(item.items[0].name, "datas")
+        return (
         <View key={index} style={styles.container}>
           <Text>Total Count: {item.totalCount}</Text>
-          <Text>Name: {item.name}</Text>
-          <Text>Symptom: {item.Symptom}</Text>
-          <Text>Usage: {item.useage}</Text>
-          <Text>Warning: {item.warning}</Text>
+          <Text>Name: {item.items[index].name}</Text>
+          <Text>Symptom: {item.items[index].Symptom}</Text>
+          <Text>Usage: {item.items[index].useage}</Text>
+          <Text>Warning: {item.items[index].warning}</Text>
         </View>
-      ))}
+      )})}
     </View>
   );
 }
