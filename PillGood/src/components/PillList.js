@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import getPillNameData from "../api/getPillNameData";
-import { setModelData } from '../model/pillModel'
+import { setModelData } from "../model/pillModel";
 
 const PillList = ({ items }) => {
 
@@ -13,19 +13,20 @@ const PillList = ({ items }) => {
     if (items.length > 0) {
       const fetchData = async () => {
         try {
-          const pillData = await Promise.all(items.map(async (pillName) => {
+          const promises = items.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
-            console.log(resData)
+            console.log(resData, "resData");
             return setModelData(resData);
-          }));
+          });
+          const pillData = await Promise.all(promises);
           setData(pillData);
         } catch (error) {
-          console.error("error", error);
+          console.error("fetch error :", error);
         }
-        fetchData();
-      }
+      };
+      fetchData();
     }
-  }, [items]);
+  }, []);
 
   return (
     <View>

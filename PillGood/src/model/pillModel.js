@@ -1,27 +1,23 @@
-//데이터 모델
 function pillModel(data) {
-  const result = {
-    //데이터 갯수
-    totalCount: data.body.totalCount,
-    //이름
-    name: data.body.items.item.itemName,
-    //증상
-    Symptom: data.body.items.item.efcyQesitm,
-    //사용법
-    useage: data.body.items.item.USE_METHOD_QESITM,
-    //주의사항
-    warning: data.body.items.item.ATPN_WARN_QESITM,
-  }
-  return result;
-}
-export function setModelData(data) {
+  const items = data.body.items.map((item) => {
+    return {
+      // 이름
+      name: item.itemName,
+      // 증상
+      Symptom: item.efcyQesitm,
+      // 사용법
+      useage: item.USE_METHOD_QESITM,
+      // 주의사항
+      warning: item.ATPN_WARN_QESITM,
+    };
+  });
 
-  const totalCount = data.body.totalCount;
-  const items = data.body.items.item;
-  const arr = items.map((item) => {
-    const result = pillModel({ body: { items: { item } } });
-    result.totalCount = totalCount;
-    return result;
-  })
-  return arr;
+  return {
+    totalCount: data.body.totalCount,
+    items: items,
+  };
+}
+
+export function setModelData(data) {
+  return pillModel(data);
 }
