@@ -13,6 +13,7 @@ const PillList = ({ items }) => {
     if (items.length > 0) {
       const fetchData = async () => {
         try {
+          console.log(items)
           const promises = items.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
             console.log(resData, "resData");
@@ -26,21 +27,23 @@ const PillList = ({ items }) => {
       };
       fetchData();
     }
-  }, []);
+  }, [items]);
 
   return (
     <View>
-      {data.map((item, index) =>{
-        console.log(item.items[0].name, "datas")
-        return (
+      {data.map((item, index) => (
         <View key={index} style={styles.container}>
-          <Text>Total Count: {item.totalCount}</Text>
-          <Text>Name: {item.items[index].name}</Text>
-          <Text>Symptom: {item.items[index].Symptom}</Text>
-          <Text>Usage: {item.items[index].useage}</Text>
-          <Text>Warning: {item.items[index].warning}</Text>
+          {item.totalCount === 0 && (
+            <Text>It's zero</Text>
+          )}
+          {item.totalCount === 1 && (
+            <Text>It's one</Text>
+          )}
+          {item.totalCount > 1 && (
+            <Text>It's two or more</Text>
+          )}
         </View>
-      )})}
+      ))}
     </View>
   );
 }
