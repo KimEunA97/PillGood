@@ -17,13 +17,10 @@ export default function TodayPillScreen() {
   }
   const handleConfirm = (confirmedData) => {
     setFlag(true)
-    setList(confirmedData);
-    console.log(confirmedData)
+    setList((prevList) => [...prevList, confirmedData]);
+    console.log(confirmedData, "confirmedData")
     closeModal();
   }
-  // useEffect(() => {
-
-  // }, [list])
 
   return (
     <View style={styles.container}>
@@ -32,9 +29,11 @@ export default function TodayPillScreen() {
       </Pressable>
       <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
       <View style={styles.listStyle}>
-        {flag && <PillList items={list} />}
+        {flag && list && list.length > 0 && list.map((item, index) => (
+          <PillList key={index} items={item} />
+        ))}
       </View>
-    </View >
+    </View>
   )
 }
 
