@@ -6,27 +6,31 @@ import { setModelData } from "../model/pillModel";
 
 const PillList = ({ items }) => {
 
-  // const [pillName, setPillName] = useState('');
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (items.length > 0) {
-      const fetchData = async () => {
-        try {
-          console.log(items)
+    const fetchData = async () => {
+      try {
+        if (items === null) {
+          return null;
+        }
+        if (items.length > 0) {
+          console.log(items, "items")
           const promises = items.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
             console.log(resData, "resData");
             return setModelData(resData);
           });
           const pillData = await Promise.all(promises);
+          console.dir(pillData, "pillData")
           setData(pillData);
-        } catch (error) {
-          console.error("fetch error :", error);
         }
-      };
-      fetchData();
-    }
+
+      } catch (error) {
+        console.error("fetch error :", error);
+      }
+    };
+    fetchData();
   }, [items]);
 
   return (
@@ -34,16 +38,16 @@ const PillList = ({ items }) => {
       {data.map((item, index) => (
         <View key={index} style={styles.container}>
           {item.totalCount === 0 && (
-            <Text>It's zero</Text>
+            <Text key={index}>It's zero</Text>
           )}
           {item.totalCount === 1 && (
-            <Text>It's one</Text>
+            <Text key={index}>It's one</Text>
           )}
           {item.totalCount > 1 && (
-            <Text>It's two or more</Text>
+            <Text key={index}>{item.items[index].name}</Text>
           )}
         </View>
-      ))} 
+      ))}
     </View>
   );
 }
