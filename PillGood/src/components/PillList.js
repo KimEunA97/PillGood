@@ -45,6 +45,9 @@ const PillList = ({ items }) => {
     fetchData();
   }, [items]);
 
+  const handlebtn = () => {
+    console.log(count)
+  }
   return (
     <View>
       {data.map((item, index) => (
@@ -57,13 +60,13 @@ const PillList = ({ items }) => {
           )}
           {count > 1 && (
             Array.from({ length: count }).map((_, index) => (
-                <Pressable>
-                  <View key={index} style={styles.container}>
-                    <Text>{item.items[index] && item.items[index].name}</Text>
-                  </View>
-                </Pressable>
+              <Pressable onPress={handlebtn}>
+                <View key={index} style={styles.container}>
+                  <Text>{item.items[index] && item.items[index].name}</Text>
+                </View>
+              </Pressable>
             ))
-          )} 
+          )}
         </View>
       ))}
     </View>
