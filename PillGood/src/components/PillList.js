@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import getPillNameData from "../api/getPillNameData";
-import pillModel, { setModelData } from '../model/pillModel'
+import { setModelData } from '../model/pillModel'
 
 const PillList = ({ items }) => {
 
-  const [pillName, setPillName] = useState('');
+  // const [pillName, setPillName] = useState('');
   const [data, setData] = useState([]);
 
   useEffect(() => {
-
-    if (items) setPillName(items)
-    {
-      if (pillName) {
-        const fetchData = async () => {
-          const resData = await getPillNameData(pillName);
-          const processedData = setModelData(resData);
-          setData(processedData)
+    if (items.length > 0) {
+      const fetchData = async () => {
+        try {
+          const pillData = await Promise.all(items.map(async (pillName) => {
+            const resData = await getPillNameData(pillName);
+            console.log(resData)
+            return setModelData(resData);
+          }));
+          setData(pillData);
+        } catch (error) {
+          console.error("error", error);
         }
         fetchData();
       }
     }
-  }, [pillName])
+  }, [items]);
 
   return (
     <View>

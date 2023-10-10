@@ -15,8 +15,9 @@ async function getPillNameData(pillName) {
   try {
     const res = await fetch(reqURL);
     const data = await res.json();
-    console.dir(data.body)
-    return data;
+    if(data.body) {
+      return data;
+    }
   }
   catch (error) {
     console.error("error", error);

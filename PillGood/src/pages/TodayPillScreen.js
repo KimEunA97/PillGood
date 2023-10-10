@@ -17,14 +17,13 @@ export default function TodayPillScreen() {
   }
   const handleConfirm = (confirmedData) => {
     setFlag(true)
-    setList((prevList) => [...prevList, ...confirmedData]);
-    console.log(list)
+    setList(confirmedData);
+    console.log(confirmedData)
     closeModal();
   }
+  // useEffect(() => {
 
-  useEffect(()=>{
-
-  },[list])
+  // }, [list])
 
   return (
     <View style={styles.container}>
