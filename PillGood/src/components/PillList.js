@@ -43,7 +43,7 @@ const PillList = ({ items }) => {
             <Text>It's two or more</Text>
           )}
         </View>
-      ))}
+      ))} 
     </View>
   );
 }
