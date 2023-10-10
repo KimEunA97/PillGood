@@ -6,6 +6,7 @@ import { setModelData } from "../model/pillModel";
 
 const PillList = ({ items }) => {
 
+  const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -15,15 +16,26 @@ const PillList = ({ items }) => {
           return null;
         }
         if (items.length > 0) {
-          console.log(items, "items")
+          console.log(items, "items");
           const promises = items.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
-            console.log(resData, "resData");
-            return setModelData(resData);
+            console.log("resData");
+            const pillData = setModelData(resData); // 여기서 pillData를 수정
+            console.dir(pillData, "pillData");
+            return pillData;
           });
-          const pillData = await Promise.all(promises);
-          console.dir(pillData, "pillData")
-          setData(pillData);
+          const pillDataArray = await Promise.all(promises);
+          const totalCount = pillDataArray[0].totalCount;
+          setCount(totalCount); // totalCount 상태 업데이트
+          // console.log(totalCount)
+          setData(pillDataArray);
+
+          // let count;
+          // setData(pillData); 
+          // console.dir(pillData, "pillData")
+          // pillData.totalCount = count;
+          // setCount(count);
+          // console.log(count, "count");
         }
 
       } catch (error) {
@@ -33,6 +45,15 @@ const PillList = ({ items }) => {
     fetchData();
   }, [items]);
 
+  const renderItems = (totalCount) => {
+    const components = [];
+    for (let i = 0; i < totalCount; i++) {
+      components.push(
+        <Text key={i}>Item {i + 1}</Text>
+      );
+    }
+    return components;
+  };
   return (
     <View>
       {data.map((item, index) => (
