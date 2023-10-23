@@ -20,22 +20,16 @@ const PillList = ({ items }) => {
           const promises = items.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
             console.log("resData");
-            const pillData = setModelData(resData); // 여기서 pillData를 수정
+            const pillData = setModelData(resData);
             console.dir(pillData, "pillData");
             return pillData;
           });
           const pillDataArray = await Promise.all(promises);
           const totalCount = pillDataArray[0].totalCount;
-          setCount(totalCount); // totalCount 상태 업데이트
-          // console.log(totalCount)
+          setCount(totalCount);
+          console.log("totalCount", totalCount)
           setData(pillDataArray);
 
-          // let count;
-          // setData(pillData); 
-          // console.dir(pillData, "pillData")
-          // pillData.totalCount = count;
-          // setCount(count);
-          // console.log(count, "count");
         }
 
       } catch (error) {
@@ -59,10 +53,10 @@ const PillList = ({ items }) => {
             <Text key={index}>It's one</Text>
           )}
           {count > 1 && (
-            Array.from({ length: count }).map((_, index) => (
-              <Pressable onPress={handlebtn}>
-                <View key={index} style={styles.container}>
-                  <Text>{item.items[index] && item.items[index].name}</Text>
+            item.items.map((innerItem) => (
+              <Pressable key={innerItem.id} onPress={handlebtn}>
+                <View style={styles.container}>
+                  <Text>{innerItem.name}</Text>
                 </View>
               </Pressable>
             ))
@@ -79,6 +73,10 @@ const styles = StyleSheet.create({
     borderColor: "black",
     margin: 10,
     padding: 10,
+  }
+  , Modal: {
+
+
   }
 })
 
