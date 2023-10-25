@@ -18,10 +18,13 @@ export default function TodayPillScreen() {
   const closeModal = () => {
     setModalVisible(false)
   }
+  const clearList = () =>{
+    setList([]);
+  }
   const handleConfirm = (confirmedData) => {
     setFlag(true)
+    clearList();
     setList((prevList) => [...prevList, confirmedData]);
-    console.log(confirmedData, "confirmedData")
     closeModal();
     setSelectModalVisible(true)
   }
@@ -34,15 +37,12 @@ export default function TodayPillScreen() {
 
   // 선택 렌더링 함수
   const renderSelectedData = () => {
-    console.log(selectedItemIndex)
     if (selectedItemIndex && selectedItemIndex.length > 0) {
       return selectedItemIndex.map((data, index) => (
         <View key={index}>
           <Text>{data.name}</Text>
         </View>
       ));
-    } else {
-      return <Text>No data selected</Text>;
     }
   };
 
@@ -57,8 +57,8 @@ export default function TodayPillScreen() {
         transparent={true}
         visible={selectModalVisible}>
         <ScrollView>
-          <View style={styles.listStyle}>
-            {flag && list && list.length > 0 && list.map((item, index) => (
+          <View style={styles.selectListStyle}>
+            {flag && list && list.length > 0 && list.map((item) => (
               <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
             ))}
           </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  listStyle: {
+  selectListStyle: {
     marginTop: 30,
   },
   box: {
