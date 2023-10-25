@@ -18,7 +18,7 @@ export default function TodayPillScreen() {
   const closeModal = () => {
     setModalVisible(false)
   }
-  const clearList = () =>{
+  const clearList = () => {
     setList([]);
   }
   const handleConfirm = (confirmedData) => {
@@ -39,33 +39,36 @@ export default function TodayPillScreen() {
   const renderSelectedData = () => {
     if (selectedItemIndex && selectedItemIndex.length > 0) {
       return selectedItemIndex.map((data, index) => (
-        <View key={index}>
-          <Text>{data.name}</Text>
+        <View key={index} style={styles.pillCard}>
+          <Text style={styles.cardText}>{data.name}</Text>
         </View>
       ));
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.box} onPress={openModal}>
-        <Text style={styles.text}>내 약 등록하기</Text>
-      </Pressable>
-      <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
 
-      <Modal
-        transparent={true}
-        visible={selectModalVisible}>
-        <ScrollView>
-          <View style={styles.selectListStyle}>
-            {flag && list && list.length > 0 && list.map((item) => (
-              <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
-            ))}
-          </View>
-        </ScrollView>
-      </Modal>
-      {renderSelectedData()}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {renderSelectedData()}
+        <Pressable style={styles.box} onPress={openModal}>
+          <Text style={styles.text}>약 등록하기</Text>
+        </Pressable>
+        <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
+
+        <Modal
+          transparent={true}
+          visible={selectModalVisible}>
+          <ScrollView>
+            <View style={styles.selectListStyle}>
+              {flag && list && list.length > 0 && list.map((item) => (
+                <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
+              ))}
+            </View>
+          </ScrollView>
+        </Modal>
+      </View>
+    </ScrollView>
   )
 }
 
@@ -81,8 +84,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   box: {
-    width: "60vw",
-    height: "20vh",
+    width: 300,
+    height: 200,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "white",
@@ -92,5 +95,24 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
+    fontSize: 30,
+    fontWeight: "bold"
+  },
+  pillCard: {
+    width: 300,
+    height: 200,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "white",
+    backgroundColor: "#167286",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  cardText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white"
   }
 })
