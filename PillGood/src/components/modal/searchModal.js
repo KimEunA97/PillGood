@@ -8,7 +8,6 @@ function SearchModal({ isVisible, onClose }) {
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
 
-
   const [innerModalVisible, setInnerModalVisible] = useState(false)
 
   const handleSearchModal = () => {
@@ -17,11 +16,13 @@ function SearchModal({ isVisible, onClose }) {
     setSearchingData([text]);
     console.log(typeof(searchingData))
     onChangeText('');
+    onClose();    
   }
 
   const handleConfirm = () => {
     console.log("확인 누름")
     onChangeText('');
+    setSearchingData([]);
   }
 
   return (
@@ -66,9 +67,9 @@ function SearchModal({ isVisible, onClose }) {
         </View>
       </Pressable>
 
-      {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData) => (
+      {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData, index) => (
         <View style={styles.innerModalContainer}>
-          <PillListModal items={searchingData} />
+          <PillListModal key={index} items={searchingData} />
         </View>
       ))}
 

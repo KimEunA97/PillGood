@@ -10,9 +10,12 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    // model을 map으로 전달받도록 해놓아서 배열을 받아야 함.
     const fetchData = async () => {
+      console.log("items type is", typeof (items))
       try {
         if (items === null) {
+          console.log("items is null")
           return null;
         }
         if (items.length > 0) {
@@ -78,10 +81,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
     margin: 10,
     padding: 10,
-  }
-  , Modal: {
-
-
   }
 })
 
