@@ -6,7 +6,7 @@ class PillModel {
         // 이름
         name: item.itemName,
         // 증상
-        Symptom: item.efcyQesitm,
+        symptom: item.efcyQesitm,
         // 사용법
         useage: item.USE_METHOD_QESITM,
         // 주의사항
