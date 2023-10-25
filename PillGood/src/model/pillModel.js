@@ -8,7 +8,7 @@ class PillModel {
         // 증상
         symptom: item.efcyQesitm,
         // 사용법
-        useage: item.USE_METHOD_QESITM,
+        usage: item.USE_METHOD_QESITM,
         // 주의사항
         warning: item.ATPN_WARN_QESITM,
       };
