@@ -10,7 +10,9 @@ export default function TodayPillScreen() {
   const [list, setList] = useState([]);
   const [selectModalVisible, setSelectModalVisible] = useState(false)
   //선택index 상태관리
-  const [selectedItemIndex, setSelectedItemIndex] = useState([]);
+  // const [selectedItemIndex, setSelectedItemIndex] = useState([]);
+  const [searchResult, setSearchResult] = useState('')
+  const [selectedData, setSelectedData] = useState(null);
 
   const openModal = () => {
     setModalVisible(true)
@@ -21,42 +23,49 @@ export default function TodayPillScreen() {
   const clearList = () => {
     setList([]);
   }
-  const handleConfirm = (confirmedData) => {
+  const handleSearchResult = (result) => {
     setFlag(true)
     clearList();
-    setList((prevList) => [...prevList, confirmedData]);
+    setList((prevList) => [...prevList, result]);
     closeModal();
     setSelectModalVisible(true)
   }
 
   const handleSelctedItem = (data) => {
     // index전달 후 모달 닫힘
-    setSelectedItemIndex((prevData) => [...prevData, data]);
+    setSearchResult(data);
+    // setSelectedItemIndex((prevData) => [...prevData, data]);
+    setSelectModalVisible(false);
+    setModalVisible(true)
+  }
+
+  const sendDataToSearchModal = (data) => {
+    setSelectedData(data);
+    setModalVisible(true);
     setSelectModalVisible(false);
   }
 
-  // 선택 렌더링 함수
-  const renderSelectedData = () => {
-    if (selectedItemIndex && selectedItemIndex.length > 0) {
-      return selectedItemIndex.map((data, index) => (
-        <View key={index} style={styles.pillCard}>
-          <Text style={styles.cardText}>{data.name}</Text>
-        </View>
-      ));
-    }
-  };
+  // const renderSelectedData = () => {
+  //   if (selectedItemIndex && selectedItemIndex.length > 0) {
+  //     return selectedItemIndex.map((data, index) => (
+  //       <View key={index} style={styles.pillCard}>
+  //         <Text style={styles.cardText}>{data.name}</Text>
+  //       </View>
+  //     ));
+  //   }
+  // };
 
   return (
 
     <ScrollView style={{ height: "100%" }}>
       <View style={styles.container}>
-        {renderSelectedData()}
+        {/* {renderSelectedData()} */}
         <View style={{ flex: 1 }}>
           <Pressable style={styles.box} onPress={openModal}>
             <Text style={styles.text}>약 등록하기</Text>
           </Pressable>
         </View>
-        <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
+        <SearchModal isVisible={isModalVisible} onClose={closeModal} search={handleSearchResult} result={handleSelctedItem} />
 
         <Modal
           transparent={true}
@@ -64,7 +73,7 @@ export default function TodayPillScreen() {
           <ScrollView>
             <View style={styles.selectListStyle}>
               {flag && list && list.length > 0 && list.map((item) => (
-                <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
+                <PillListModal items={item} callbackSelectedBtn={sendDataToSearchModal} />
               ))}
             </View>
           </ScrollView>

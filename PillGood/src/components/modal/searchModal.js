@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Text, StyleSheet, View, Pressable, TextInput } from "react-native";
 
-function SearchModal({ isVisible, onClose, confirm }) {
+function SearchModal({ isVisible, onClose, search, result }) {
 
   const [text, onChangeText] = useState('');
-
-  const handleConfirm = () => {
-    confirm([text]);
+  const handleSearch = () => {
+    search([text]);
     onChangeText('');
     onClose();
   }
+
+  const handleConfirm = (data) =>{
+    console.log(data)
+  }
+
+  useEffect(() => {
+    onChangeText(result)
+  }, [result])
 
   return (
     <Modal
@@ -21,13 +28,21 @@ function SearchModal({ isVisible, onClose, confirm }) {
       <Pressable
         style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.textStyle}>약이름</Text>
-          <TextInput
-            style={styles.textInputStyle}
-            onChangeText={onChangeText}
-            placeholder="약이름"
-            placeholderTextColor={"grey"}
-            value={text} />
+          <View style={styles.pillContent}>
+            <Text style={styles.textStyle}>약이름</Text>
+            <View style={styles.pillSearchBar}>
+              <TextInput
+                style={styles.textInputStyle}
+                onChangeText={onChangeText}
+                placeholder="약이름"
+                placeholderTextColor={"grey"}
+                value={text} />
+              <Pressable style={styles.buttonSty}
+                onPress={handleSearch}>
+                <Text>검색</Text>
+              </Pressable>
+            </View>
+          </View>
 
           <View>
             <Text style={[styles.textStyle, { marginTop: 10 }]}>시간설정</Text>
@@ -54,26 +69,43 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   content: {
-    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     width: "70%",
     height: "70%",
     backgroundColor: "#007088",
     borderRadius: 10,
+    borderWidth: 1,
+
+  },
+  pillContent: {
+    alignItems: "center",
+    flexDirection: "column",
+    backgroundColor: "#007088",
+    borderRadius: 10,
+    borderWidth: 1,
+
+  },
+  pillSearchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "green",
+    borderWidth: 1,
+
   },
   textInputStyle: {
-    fontSize : 20,
-    fontWeight : "bold",
-    width: "80%",
-    height: "10%",
+    fontSize: 20,
+    fontWeight: "bold",
     backgroundColor: "white",
     marginTop: 10,
+    borderWidth: 1,
+
   },
   textStyle: {
     fontSize: 40,
