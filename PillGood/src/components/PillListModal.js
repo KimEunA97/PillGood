@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Modal, ScrollView, Pressable } from "react-nati
 import getPillNameData from "../api/getPillNameData";
 import { setModelData } from "../model/pillModel";
 
-const PillList = ({ items }) => {
+const PillListModal = ({ items, callbackSelectedBtn }) => {
 
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
@@ -39,22 +39,26 @@ const PillList = ({ items }) => {
     fetchData();
   }, [items]);
 
-  const handlebtn = () => {
-    console.log(count)
+  const handlebtn = (data) => {
+    callbackSelectedBtn(data);
   }
   return (
     <View>
-      {data.map((item, index) => (
-        <View key={index} style={styles.container}>
-          {count === 0 && (
-            <Text key={index}>It's zero</Text>
+      {data.map((item) => (
+        <View style={styles.container}>
+          {count === 0 && body === null(
+            <Pressable style={styles.container}>
+              <Text>No result</Text>
+            </Pressable>
           )}
           {count === 1 && (
-            <Text key={index}>It's one</Text>
+            <Pressable style={styles.container}>
+              <Text >It's one</Text>
+            </Pressable>
           )}
           {count > 1 && (
-            item.items.map((innerItem) => (
-              <Pressable key={innerItem.id} onPress={handlebtn}>
+            item.items.map((innerItem, index) => (
+              <Pressable key={index} onPress={() => handlebtn(innerItem)}>
                 <View style={styles.container}>
                   <Text>{innerItem.name}</Text>
                 </View>
@@ -80,4 +84,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default PillList;
+export default PillListModal;

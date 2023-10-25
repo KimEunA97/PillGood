@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable, Modal, ScrollView } from "react-native";
 import SearchModal from "../components/modal/searchModal";
-import PillList from "../components/PillList";
+import PillListModal from "../components/PillListModal";
 
 export default function TodayPillScreen() {
 
@@ -9,6 +9,8 @@ export default function TodayPillScreen() {
   const [isModalVisible, setModalVisible] = useState(false)
   const [list, setList] = useState([]);
   const [selectModalVisible, setSelectModalVisible] = useState(false)
+  //선택index 상태관리
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   const openModal = () => {
     setModalVisible(true)
@@ -24,6 +26,24 @@ export default function TodayPillScreen() {
     setSelectModalVisible(true)
   }
 
+
+  const handleSelctedItem = (data) => {
+    // index전달 후 모달 닫힘
+    setSelectedItemIndex(data);
+    setSelectModalVisible(false);
+  }
+  const renderSelectedData = () => {
+    if (selectedItemIndex) {
+      return (
+        <View>
+          <Text>{selectedItemIndex.name}</Text>
+        </View>
+      );
+    } else {
+      return <Text>No data selected</Text>;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.box} onPress={openModal}>
@@ -37,12 +57,13 @@ export default function TodayPillScreen() {
         <ScrollView>
           <View style={styles.listStyle}>
             {flag && list && list.length > 0 && list.map((item, index) => (
-              <PillList items={item} />
+              <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
             ))}
           </View>
         </ScrollView>
       </Modal>
-      
+      {selectedItemIndex !== null && renderSelectedData()}
+
     </View>
   )
 }
