@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Text, StyleSheet, View, Pressable, TextInput } from "react-native";
+import PillListModal from "../PillListModal";
 
-function SearchModal({ isVisible, onClose, search, result }) {
+function SearchModal({ isVisible, onClose }) {
 
   const [text, onChangeText] = useState('');
-  const handleSearch = () => {
-    search([text]);
+  const [searchingData, setSearchingData] = useState([]);
+  const [onFetch, setOnFetch] = useState(false)
+
+
+  const [innerModalVisible, setInnerModalVisible] = useState(false)
+
+  const handleSearchModal = () => {
+    setOnFetch(true);
+    setInnerModalVisible(true)
+    const textArr = text.split('')
+    setSearchingData(textArr);
     onChangeText('');
     onClose();
   }
 
-  const handleConfirm = (data) =>{
+  const handleConfirm = (data) => {
     console.log(data)
   }
-
-  useEffect(() => {
-    onChangeText(result)
-  }, [result])
 
   return (
     <Modal
@@ -24,7 +30,6 @@ function SearchModal({ isVisible, onClose, search, result }) {
       visible={isVisible}
       animationType="fade"
     >
-
       <Pressable
         style={styles.container}>
         <View style={styles.content}>
@@ -37,8 +42,9 @@ function SearchModal({ isVisible, onClose, search, result }) {
                 placeholder="약이름"
                 placeholderTextColor={"grey"}
                 value={text} />
+              {/* 검색 */}
               <Pressable style={styles.buttonSty}
-                onPress={handleSearch}>
+                onPress={handleSearchModal}>
                 <Text>검색</Text>
               </Pressable>
             </View>
@@ -59,7 +65,18 @@ function SearchModal({ isVisible, onClose, search, result }) {
           </View>
         </View>
       </Pressable>
+
+      <Modal transparent={true}
+        visible={innerModalVisible}>
+        <View style={styles.innerModalContainer}>
+          {onFetch && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData) => (
+            <PillListModal items={searchingData} />
+          ))}
+        </View>
+      </Modal>
+
     </Modal >
+
   )
 }
 
@@ -129,5 +146,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 30,
+  },
+  innerModalContainer: {
+    flex: 1,
   }
 })

@@ -46,8 +46,8 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   return (
     <View>
       {data.map((item) => (
-        <View style={styles.container}>
-          {count === 0 && body === null(
+        <View style={styles.container} >
+          {count === 0 && body === null && (
             <Pressable style={styles.container}>
               <Text>No result</Text>
             </Pressable>

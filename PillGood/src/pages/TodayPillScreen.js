@@ -11,7 +11,6 @@ export default function TodayPillScreen() {
   const [selectModalVisible, setSelectModalVisible] = useState(false)
   //선택index 상태관리
   // const [selectedItemIndex, setSelectedItemIndex] = useState([]);
-  const [searchResult, setSearchResult] = useState('')
   const [selectedData, setSelectedData] = useState(null);
 
   const openModal = () => {
@@ -23,14 +22,6 @@ export default function TodayPillScreen() {
   const clearList = () => {
     setList([]);
   }
-  const handleSearchResult = (result) => {
-    setFlag(true)
-    clearList();
-    setList((prevList) => [...prevList, result]);
-    closeModal();
-    setSelectModalVisible(true)
-  }
-
   const handleSelctedItem = (data) => {
     // index전달 후 모달 닫힘
     setSearchResult(data);
@@ -38,11 +29,18 @@ export default function TodayPillScreen() {
     setSelectModalVisible(false);
     setModalVisible(true)
   }
+  const handleSearchData = () => {
+    setFlag(true)
+    clearList();
+    closeModal();
+    setSelectModalVisible(true)
+  }
+
 
   const sendDataToSearchModal = (data) => {
     setSelectedData(data);
-    setModalVisible(true);
-    setSelectModalVisible(false);
+    setModalVisible(false);
+    setSelectModalVisible(true);
   }
 
   // const renderSelectedData = () => {
@@ -65,19 +63,19 @@ export default function TodayPillScreen() {
             <Text style={styles.text}>약 등록하기</Text>
           </Pressable>
         </View>
-        <SearchModal isVisible={isModalVisible} onClose={closeModal} search={handleSearchResult} result={handleSelctedItem} />
+        <SearchModal isVisible={isModalVisible} onClose={closeModal} />
 
-        <Modal
+        {/* <Modal
           transparent={true}
           visible={selectModalVisible}>
           <ScrollView>
             <View style={styles.selectListStyle}>
               {flag && list && list.length > 0 && list.map((item) => (
-                <PillListModal items={item} callbackSelectedBtn={sendDataToSearchModal} />
+                <PillListModal items={item} callbackSelectedBtn={handleSelctedItem} />
               ))}
             </View>
           </ScrollView>
-        </Modal>
+        </Modal> */}
       </View>
     </ScrollView>
   )
