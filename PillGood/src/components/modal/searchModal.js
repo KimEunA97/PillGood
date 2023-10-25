@@ -6,22 +6,22 @@ function SearchModal({ isVisible, onClose }) {
 
   const [text, onChangeText] = useState('');
   const [searchingData, setSearchingData] = useState([]);
-  const [onFetch, setOnFetch] = useState(false)
+  const [toggle, setToggle] = useState(false)
 
 
   const [innerModalVisible, setInnerModalVisible] = useState(false)
 
   const handleSearchModal = () => {
-    setOnFetch(true);
+    setToggle(true);
     setInnerModalVisible(true)
-    const textArr = text.split('')
-    setSearchingData(textArr);
+    setSearchingData([text]);
+    console.log(typeof(searchingData))
     onChangeText('');
-    onClose();
   }
 
-  const handleConfirm = (data) => {
-    console.log(data)
+  const handleConfirm = () => {
+    console.log("확인 누름")
+    onChangeText('');
   }
 
   return (
@@ -66,14 +66,11 @@ function SearchModal({ isVisible, onClose }) {
         </View>
       </Pressable>
 
-      <Modal transparent={true}
-        visible={innerModalVisible}>
+      {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData) => (
         <View style={styles.innerModalContainer}>
-          {onFetch && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData) => (
-            <PillListModal items={searchingData} />
-          ))}
+          <PillListModal items={searchingData} />
         </View>
-      </Modal>
+      ))}
 
     </Modal >
 
