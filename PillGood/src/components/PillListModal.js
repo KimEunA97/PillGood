@@ -29,6 +29,7 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
           setCount(totalCount);
           console.log("totalCount", totalCount)
           setData(pillDataArray);
+          console.log(pillDataArray[0].usage)
 
         }
 
@@ -40,6 +41,7 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   }, [items]);
 
   const handlebtn = (data) => {
+    console.log(data)
     callbackSelectedBtn(data);
   }
   return (

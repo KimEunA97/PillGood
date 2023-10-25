@@ -10,7 +10,7 @@ export default function TodayPillScreen() {
   const [list, setList] = useState([]);
   const [selectModalVisible, setSelectModalVisible] = useState(false)
   //선택index 상태관리
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+  const [selectedItemIndex, setSelectedItemIndex] = useState([]);
 
   const openModal = () => {
     setModalVisible(true)
@@ -26,19 +26,21 @@ export default function TodayPillScreen() {
     setSelectModalVisible(true)
   }
 
-
   const handleSelctedItem = (data) => {
     // index전달 후 모달 닫힘
-    setSelectedItemIndex(data);
+    setSelectedItemIndex((prevData) => [...prevData, data]);
     setSelectModalVisible(false);
   }
+
+  // 선택 렌더링 함수
   const renderSelectedData = () => {
-    if (selectedItemIndex) {
-      return (
-        <View>
-          <Text>{selectedItemIndex.name}</Text>
+    console.log(selectedItemIndex)
+    if (selectedItemIndex && selectedItemIndex.length > 0) {
+      return selectedItemIndex.map((data, index) => (
+        <View key={index}>
+          <Text>{data.name}</Text>
         </View>
-      );
+      ));
     } else {
       return <Text>No data selected</Text>;
     }
@@ -62,8 +64,7 @@ export default function TodayPillScreen() {
           </View>
         </ScrollView>
       </Modal>
-      {selectedItemIndex !== null && renderSelectedData()}
-
+      {renderSelectedData()}
     </View>
   )
 }
