@@ -48,12 +48,14 @@ export default function TodayPillScreen() {
 
   return (
 
-    <ScrollView>
+    <ScrollView style={{ height: "100%" }}>
       <View style={styles.container}>
         {renderSelectedData()}
-        <Pressable style={styles.box} onPress={openModal}>
-          <Text style={styles.text}>약 등록하기</Text>
-        </Pressable>
+        <View style={{ flex: 1 }}>
+          <Pressable style={styles.box} onPress={openModal}>
+            <Text style={styles.text}>약 등록하기</Text>
+          </Pressable>
+        </View>
         <SearchModal isVisible={isModalVisible} onClose={closeModal} confirm={handleConfirm} />
 
         <Modal
@@ -108,7 +110,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    marginTop: 20,
   },
   cardText: {
     fontSize: 20,
