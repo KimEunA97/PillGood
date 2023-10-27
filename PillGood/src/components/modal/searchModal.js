@@ -8,21 +8,22 @@ function SearchModal({ isVisible, onClose }) {
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
 
-  const [innerModalVisible, setInnerModalVisible] = useState(false)
+  // const [innerModalVisible, setInnerModalVisible] = useState(false)
 
   const handleSearchButton = () => {
     setToggle(true);
-    setInnerModalVisible(true)
-    setSearchingData((prevData) => [...prevData, text]);
+    // setInnerModalVisible(true)
+    setSearchingData(["타이레놀"])
+    // setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
-    onClose();
   }
 
   const handleConfirm = () => {
     console.log("확인 누름")
     onChangeText('');
     setSearchingData([]);
+    onClose();
   }
 
   return (
@@ -146,8 +147,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
   },
-  innerModalContainer: {
-    width: 100,
-    height: 100,
-  }
 })

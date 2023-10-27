@@ -12,15 +12,20 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   useEffect(() => {
     // model을 map으로 전달받도록 해놓아서 배열을 받아야 함.
     const fetchData = async () => {
+
       console.log("items type is", typeof (items))
+
       try {
+
         if (items === null) {
           console.log("items is null")
           return null;
         }
-        if (items.length > 0) {
-          console.log(items, "items");
-          const promises = items.map(async (pillName) => {
+        const itemsArr = Array.isArray(items) ? items : [items];
+
+        if (itemsArr.length > 0) {
+          console.log(itemsArr, "items");
+          const promises = itemsArr.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
             console.log("resData");
             const pillData = setModelData(resData);
