@@ -13,14 +13,13 @@ function SearchModal({ isVisible, onClose }) {
   const handleSearchButton = () => {
     setToggle(true);
     setInnerModalVisible(true)
-    // setSearchingData(["타이레놀"])
     setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
   }
 
   const handleConfirm = () => {
-    console.log("확인 누름")
+    console.log("확인 누름 =", text)
     onChangeText('');
     setSearchingData([]);
     onClose();

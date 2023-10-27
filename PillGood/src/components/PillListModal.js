@@ -27,16 +27,15 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
           console.log(itemsArr, "items");
           const promises = itemsArr.map(async (pillName) => {
             const resData = await getPillNameData(pillName);
-            console.log("resData");
             const pillData = setModelData(resData);
-            console.dir(pillData, "pillData");
             return pillData;
           });
           const pillDataArray = await Promise.all(promises);
           const totalCount = pillDataArray[0].totalCount;
           setCount(totalCount);
-          console.log("totalCount", totalCount)
+          console.log("totalCount :", totalCount)
           setData(pillDataArray);
+          console.log(data.items);
         }
 
       } catch (error) {
@@ -48,7 +47,7 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
 
   // 버튼을 누르면 선택 결과를 콜백하는 함수
   const handlebtn = (data) => {
-    console.log(data)
+    console.log(data, "callback data")
     callbackSelectedBtn(data);
   }
   return (
@@ -61,8 +60,9 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
             </Pressable>
           )}
           {count === 1 && (
-            <Pressable style={styles.container}>
-              <Text >It's one</Text>
+            <Pressable style={styles.container} onPress={()=>handlebtn(item)}>
+              <Text>{item.items.name}</Text>
+              <Text>1 result</Text>
             </Pressable>
           )}
           {count > 1 && (

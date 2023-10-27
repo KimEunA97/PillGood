@@ -17,6 +17,6 @@ class PillModel {
 }
 
 export function setModelData(data) {
-  console.log(": setModelData")
+  console.log(data, ": setModelData")
   return new PillModel(data);
 }
