@@ -13,7 +13,8 @@ function SearchModal({ isVisible, onClose }) {
   const handleSearchButton = () => {
     setToggle(true);
     setInnerModalVisible(true)
-    setSearchingData((prevData) => [...prevData, text]);
+    setSearchingData(["아니"])
+    // setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
   }
@@ -25,7 +26,7 @@ function SearchModal({ isVisible, onClose }) {
     onClose();
   }
 
-  const handleCancel= ()=>{
+  const handleCancel = () => {
     console.log("취소 누름")
     onChangeText('');
     setSearchingData([]);
@@ -55,11 +56,12 @@ function SearchModal({ isVisible, onClose }) {
                 onChangeText={onChangeText}
                 placeholder="약이름"
                 placeholderTextColor={"grey"}
-                value={text} />
+                value={text}
+                multiline />
               {/* 검색 */}
-              <Pressable style={styles.buttonSty}
+              <Pressable style={styles.SearchButtonSty}
                 onPress={handleSearchButton}>
-                <Text>검색</Text>
+                <Text style={styles.SearchText}>검색</Text>
               </Pressable>
             </View>
           </View>
@@ -95,7 +97,6 @@ function SearchModal({ isVisible, onClose }) {
 export default SearchModal;
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     flexDirection: "column",
@@ -122,11 +123,18 @@ const styles = StyleSheet.create({
 
   },
   pillSearchBar: {
-    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "green",
     borderWidth: 1,
-
+  },
+  SearchButtonSty: {
+    width: 100,
+    height: 50,
+    flexDirection: "row",
+    backgroundColor: "green",
+  },
+  SearchText: {
+    fontSize: 30,
+    textAlign: "center",
   },
   textInputStyle: {
     fontSize: 20,
@@ -134,7 +142,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 10,
     borderWidth: 1,
-
   },
   textStyle: {
     fontSize: 40,
