@@ -8,13 +8,13 @@ function SearchModal({ isVisible, onClose }) {
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
 
-  // const [innerModalVisible, setInnerModalVisible] = useState(false)
+  const [innerModalVisible, setInnerModalVisible] = useState(false)
 
   const handleSearchButton = () => {
     setToggle(true);
-    // setInnerModalVisible(true)
-    setSearchingData(["타이레놀"])
-    // setSearchingData((prevData) => [...prevData, text]);
+    setInnerModalVisible(true)
+    // setSearchingData(["타이레놀"])
+    setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
   }
@@ -25,11 +25,18 @@ function SearchModal({ isVisible, onClose }) {
     setSearchingData([]);
     onClose();
   }
+
+  const handleCancel= ()=>{
+    console.log("취소 누름")
+    onChangeText('');
+    setSearchingData([]);
+    onClose();
+  }
+
   const searchComplete = (data) => {
-    setToggle(false)
-    const _data = toString(data);
-    onChangeText(_data, "_data")
-    console.log(data)
+    setToggle(false);
+    console.log(data.name, "completeData");
+    onChangeText(data.name);
   }
 
   return (
@@ -67,7 +74,7 @@ function SearchModal({ isVisible, onClose }) {
             <Pressable onPress={handleConfirm} style={[styles.buttonSty, { backgroundColor: "blue" }]}>
               <Text style={styles.buttonTextSty}>확인</Text>
             </Pressable>
-            <Pressable onPress={onClose} style={[styles.buttonSty, { backgroundColor: "red" }]}>
+            <Pressable onPress={handleCancel} style={[styles.buttonSty, { backgroundColor: "red" }]}>
               <Text style={styles.buttonTextSty}>취소</Text>
             </Pressable>
           </View>
