@@ -32,7 +32,6 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
           setCount(totalCount);
           console.log("totalCount", totalCount)
           setData(pillDataArray);
-
         }
 
       } catch (error) {
@@ -42,6 +41,7 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
     fetchData();
   }, [items]);
 
+  // 버튼을 누르면 선택 결과를 콜백하는 함수
   const handlebtn = (data) => {
     console.log(data)
     callbackSelectedBtn(data);

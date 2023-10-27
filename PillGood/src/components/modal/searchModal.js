@@ -10,13 +10,13 @@ function SearchModal({ isVisible, onClose }) {
 
   const [innerModalVisible, setInnerModalVisible] = useState(false)
 
-  const handleSearchModal = () => {
+  const handleSearchButton = () => {
     setToggle(true);
     setInnerModalVisible(true)
-    setSearchingData([text]);
-    console.log(typeof(searchingData))
+    setSearchingData((prevData) => [...prevData, text]);
+    console.log(("searchingData is", searchingData))
     onChangeText('');
-    onClose();    
+    onClose();
   }
 
   const handleConfirm = () => {
@@ -45,7 +45,7 @@ function SearchModal({ isVisible, onClose }) {
                 value={text} />
               {/* 검색 */}
               <Pressable style={styles.buttonSty}
-                onPress={handleSearchModal}>
+                onPress={handleSearchButton}>
                 <Text>검색</Text>
               </Pressable>
             </View>
@@ -67,6 +67,7 @@ function SearchModal({ isVisible, onClose }) {
         </View>
       </Pressable>
 
+      {/* 검색 버튼을 누르면 토글 true 되고 선택지 렌더링 */}
       {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData, index) => (
         <View style={styles.innerModalContainer}>
           <PillListModal key={index} items={searchingData} />
@@ -146,6 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   innerModalContainer: {
-    flex: 1,
+    width: 100,
+    height: 100,
   }
 })
