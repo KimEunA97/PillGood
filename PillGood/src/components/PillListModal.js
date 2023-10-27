@@ -12,17 +12,13 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   useEffect(() => {
     // model을 map으로 전달받도록 해놓아서 배열을 받아야 함.
     const fetchData = async () => {
-
       console.log("items type is", typeof (items))
-
       try {
-
         if (items === null) {
           console.log("items is null")
           return null;
         }
         const itemsArr = Array.isArray(items) ? items : [items];
-
         if (itemsArr.length > 0) {
           console.log(itemsArr, "items");
           const promises = itemsArr.map(async (pillName) => {
@@ -33,9 +29,9 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
           const pillDataArray = await Promise.all(promises);
           const totalCount = pillDataArray[0].totalCount;
           setCount(totalCount);
-          console.log("totalCount :", totalCount)
+          console.log("totalCount :", totalCount);
           setData(pillDataArray);
-          console.log(data.items);
+          console.log(data[0].items[0].name, "40");
         }
 
       } catch (error) {
@@ -52,30 +48,27 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   }
   return (
     <View>
-      {data.map((item) => (
-        <View style={styles.container} >
-          {count === 0 && body === null && (
-            <Pressable style={styles.container}>
-              <Text>No result</Text>
+      {count === 0 && (
+        <Pressable style={styles.container}>
+          <Text>No result</Text>
+        </Pressable>
+      )}
+      {count === 1 && data.length > 0 && (
+        <Pressable style={styles.container} onPress={() => handlebtn(data[0].items[0].name)}>
+          <Text>{data[0].items[0].name}</Text>
+        </Pressable>
+      )}
+      {count > 1 && data.length > 0 &&
+        data.map((items, index) => (
+          items.items.map((innerItem, innerIndex) => (
+            <Pressable key={innerIndex} onPress={() => handlebtn(innerItem)}>
+              <View style={styles.container}>
+                <Text>{innerItem.name}</Text>
+              </View>
             </Pressable>
-          )}
-          {count === 1 && (
-            <Pressable style={styles.container} onPress={()=>handlebtn(item)}>
-              <Text>{item.items.name}</Text>
-              <Text>1 result</Text>
-            </Pressable>
-          )}
-          {count > 1 && (
-            item.items.map((innerItem, index) => (
-              <Pressable key={index} onPress={() => handlebtn(innerItem)}>
-                <View style={styles.container}>
-                  <Text>{innerItem.name}</Text>
-                </View>
-              </Pressable>
-            ))
-          )}
-        </View>
-      ))}
+          ))
+        ))
+      }
     </View>
   );
 }
@@ -84,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: "black",
+    backgroundColor: "pink",
     margin: 10,
     padding: 10,
   }
