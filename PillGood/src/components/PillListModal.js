@@ -47,7 +47,7 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
   }
   return (
     <View style={styles.container}>
-      {count === 0 && (
+      {count === 0 && data === null && (
         <Pressable style={styles.buttonStyle}>
           <Text style={styles.textSty}>결과가 없습니다.</Text>
         </Pressable>
