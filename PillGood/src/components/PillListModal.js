@@ -46,23 +46,23 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
     callbackSelectedBtn(data);
   }
   return (
-    <View>
+    <View style={styles.container}>
       {count === 0 && (
-        <Pressable style={styles.container}>
-          <Text>No result</Text>
+        <Pressable style={styles.buttonStyle}>
+          <Text style={styles.textSty}>결과가 없습니다.</Text>
         </Pressable>
       )}
       {count === 1 && data.length > 0 && (
-        <Pressable style={styles.container} onPress={() => handlebtn(data[0].items[0].name)}>
-          <Text>{data[0].items[0].name}</Text>
+        <Pressable style={styles.buttonStyle} onPress={() => handlebtn(data[0].items[0])}>
+          <Text style={styles.textSty}>{data[0].items[0].name}</Text>
         </Pressable>
       )}
       {count > 1 && data.length > 0 &&
         data.map((items, index) => (
           items.items.map((innerItem, innerIndex) => (
             <Pressable key={innerIndex} onPress={() => handlebtn(innerItem)}>
-              <View style={styles.container}>
-                <Text>{innerItem.name}</Text>
+              <View style={styles.buttonStyle}>
+                <Text style={styles.textSty}>{innerItem.name}</Text>
               </View>
             </Pressable>
           ))
@@ -74,11 +74,19 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  buttonStyle: {
+    alignItems: "center",
     borderWidth: 1,
     borderColor: "black",
     backgroundColor: "pink",
     margin: 10,
     padding: 10,
+  }
+  , textSty: {
+    fontSize: 20,
+    fontWeight: "bold",
   }
 })
 
