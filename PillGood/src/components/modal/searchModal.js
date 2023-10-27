@@ -8,11 +8,8 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
 
-  const [innerModalVisible, setInnerModalVisible] = useState(false)
-
   const handleSearchButton = () => {
     setToggle(true);
-    setInnerModalVisible(true)
     setSearchingData(["타이"])
     // setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
