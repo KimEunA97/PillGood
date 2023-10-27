@@ -31,7 +31,6 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
           setCount(totalCount);
           console.log("totalCount :", totalCount);
           setData(pillDataArray);
-          console.log(data[0].items[0].name, "40");
         }
 
       } catch (error) {
