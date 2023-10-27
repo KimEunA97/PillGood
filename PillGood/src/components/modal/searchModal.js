@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Text, StyleSheet, View, Pressable, TextInput, ScrollView } from "react-native";
 import PillListModal from "../PillListModal";
 
-function SearchModal({ isVisible, onClose }) {
+function SearchModal({ isVisible, onClose, callbackConfirmData }) {
 
   const [text, onChangeText] = useState('');
   const [searchingData, setSearchingData] = useState([]);
@@ -23,6 +23,7 @@ function SearchModal({ isVisible, onClose }) {
     console.log("확인 누름 =", text)
     onChangeText('');
     setSearchingData([]);
+    callbackConfirmData(text);
     onClose();
   }
 
