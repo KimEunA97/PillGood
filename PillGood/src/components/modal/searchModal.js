@@ -25,6 +25,12 @@ function SearchModal({ isVisible, onClose }) {
     setSearchingData([]);
     onClose();
   }
+  const searchComplete = (data) => {
+    setToggle(false)
+    const _data = toString(data);
+    onChangeText(_data, "_data")
+    console.log(data)
+  }
 
   return (
     <Modal
@@ -32,7 +38,7 @@ function SearchModal({ isVisible, onClose }) {
       visible={isVisible}
       animationType="fade"
     >
-      <Pressable
+      {!toggle && <Pressable
         style={styles.container}>
         <View style={styles.content}>
           <View style={styles.pillContent}>
@@ -66,12 +72,12 @@ function SearchModal({ isVisible, onClose }) {
             </Pressable>
           </View>
         </View>
-      </Pressable>
+      </Pressable>}
 
       {/* 검색 버튼을 누르면 토글 true 되고 선택지 렌더링 */}
       {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData, index) => (
         <View style={styles.innerModalContainer}>
-          <PillListModal key={index} items={searchingData} />
+          <PillListModal key={index} items={searchingData} callbackSelectedBtn={(data) => searchComplete(data)} />
         </View>
       ))}
 
