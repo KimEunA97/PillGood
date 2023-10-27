@@ -10,6 +10,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
 
+  // 검색버튼
   const handleSearchButton = () => {
     setToggle(true);
     setSearchingData(["타이"])
@@ -18,6 +19,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
     onChangeText('');
   }
 
+  // 페이지 등록
   const handleConfirm = () => {
     console.log("확인 누름 =", text)
     onChangeText('');
@@ -25,7 +27,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
     callbackConfirmData(text);
     onClose();
   }
-
+  // 취소 버튼. 누르면 상태값 초기화
   const handleCancel = () => {
     console.log("취소 누름")
     onChangeText('');
@@ -33,9 +35,10 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
     onClose();
   }
 
+  // 리스트에서 약을 선택하면 문자열 전달해 렌더링
   const searchComplete = (data) => {
     setToggle(false);
-    console.log(data.name, "completeData");
+    // console.log(data.name, "completeData");
     onChangeText(data.name);
   }
 
@@ -45,12 +48,15 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
       visible={isVisible}
       animationType="fade"
     >
+
+      {/* 선택 리스트 열려있으면 닫기 */}
       {!toggle && <Pressable
         style={styles.container}>
         <View style={styles.content}>
           <View style={styles.pillContent}>
             <Text style={styles.textStyle}>약이름</Text>
             <View style={styles.pillSearchBar}>
+              {/* 콜백할 문자열 담긴 input박스 */}
               <TextInput
                 style={styles.textInputStyle}
                 onChangeText={onChangeText}
@@ -58,7 +64,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
                 placeholderTextColor={"grey"}
                 value={text}
                 multiline />
-              {/* 검색 */}
+              {/* 검색 버튼 */}
               <Pressable style={styles.SearchButtonSty}
                 onPress={handleSearchButton}>
                 <Text style={styles.SearchText}>검색</Text>
@@ -68,7 +74,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
 
           <View>
             <Text style={[styles.textStyle, { marginTop: 10 }]}>시간설정</Text>
-            <Timepicker/>
+            <Timepicker />
           </View>
 
           {/* 상호작용 버튼 */}
@@ -88,6 +94,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
         <View style={styles.innerModalContainer}>
           <Text style={styles.textStyle}>등록할 약 선택</Text>
           <ScrollView>
+            {/* 선택할 약 렌더링 */}
             <PillListModal key={index} items={searchingData} callbackSelectedBtn={(data) => searchComplete(data)} />
           </ScrollView>
         </View>

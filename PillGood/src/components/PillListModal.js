@@ -40,27 +40,32 @@ const PillListModal = ({ items, callbackSelectedBtn }) => {
     fetchData();
   }, [items]);
 
-  // 버튼을 누르면 선택 결과를 콜백하는 함수
+  // 버튼을 누르면 선택 결과를 콜백
   const handlebtn = (data) => {
     console.log(data, "callback data")
     callbackSelectedBtn(data);
   }
   return (
+
     <View style={styles.container}>
+      {/* 결과가 없을 때 */}
       {count === 0 && data === null && (
         <Pressable style={styles.buttonStyle}>
           <Text style={styles.textSty}>결과가 없습니다.</Text>
         </Pressable>
       )}
+      {/* 결과 하나일 때 */}
       {count === 1 && data.length > 0 && (
         <Pressable style={styles.buttonStyle} onPress={() => handlebtn(data[0].items[0])}>
           <Text style={styles.textSty}>{data[0].items[0].name}</Text>
         </Pressable>
       )}
+      {/* 결과가 다수일 때 */}
       {count > 1 && data.length > 0 &&
         data.map((items, index) => (
           items.items.map((innerItem, innerIndex) => (
             <Pressable key={innerIndex} onPress={() => handlebtn(innerItem)}>
+              {/* 약 이름으로 고르도록 이름만 렌더링 */}
               <View style={styles.buttonStyle}>
                 <Text style={styles.textSty}>{innerItem.name}</Text>
               </View>
