@@ -115,28 +115,31 @@ const styles = StyleSheet.create({
 
   },
   pillContent: {
+    width : "90%",
     alignItems: "center",
     flexDirection: "column",
     backgroundColor: "#007088",
     borderRadius: 10,
-    borderWidth: 1,
 
   },
   pillSearchBar: {
+    width : "100%",
     alignItems: "center",
-    borderWidth: 1,
   },
   SearchButtonSty: {
-    width: 100,
-    height: 50,
     flexDirection: "row",
     backgroundColor: "green",
+    alignItems: "center",
+    justifyContent: "center",
   },
   SearchText: {
     fontSize: 30,
+    flexDirection: "row",
     textAlign: "center",
+    color: "black",
   },
   textInputStyle: {
+    width : "100%",
     fontSize: 20,
     fontWeight: "bold",
     backgroundColor: "white",
