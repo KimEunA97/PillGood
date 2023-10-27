@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Text, StyleSheet, View, Pressable, TextInput } from "react-native";
+import { Modal, Text, StyleSheet, View, Pressable, TextInput, ScrollView } from "react-native";
 import PillListModal from "../PillListModal";
 
 function SearchModal({ isVisible, onClose }) {
@@ -13,7 +13,7 @@ function SearchModal({ isVisible, onClose }) {
   const handleSearchButton = () => {
     setToggle(true);
     setInnerModalVisible(true)
-    setSearchingData(["아니"])
+    setSearchingData(["타이"])
     // setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
@@ -85,7 +85,10 @@ function SearchModal({ isVisible, onClose }) {
       {/* 검색 버튼을 누르면 토글 true 되고 선택지 렌더링 */}
       {toggle && searchingData && Array.isArray(searchingData) && searchingData.length > 0 && searchingData.map((searchingData, index) => (
         <View style={styles.innerModalContainer}>
-          <PillListModal key={index} items={searchingData} callbackSelectedBtn={(data) => searchComplete(data)} />
+          <Text style={styles.textStyle}>등록할 약 선택</Text>
+          <ScrollView>
+            <PillListModal key={index} items={searchingData} callbackSelectedBtn={(data) => searchComplete(data)} />
+          </ScrollView>
         </View>
       ))}
 
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
 
   },
   pillContent: {
-    width : "90%",
+    width: "90%",
     alignItems: "center",
     flexDirection: "column",
     backgroundColor: "#007088",
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
 
   },
   pillSearchBar: {
-    width : "100%",
+    width: "100%",
     alignItems: "center",
   },
   SearchButtonSty: {
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   textInputStyle: {
-    width : "100%",
+    width: "100%",
     fontSize: 20,
     fontWeight: "bold",
     backgroundColor: "white",
@@ -169,4 +172,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
   },
+  innerModalContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    alignItems: "center",
+    justifyContent: "center",
+  }
 })
