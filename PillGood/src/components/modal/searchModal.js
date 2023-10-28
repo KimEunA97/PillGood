@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Text, StyleSheet, View, Pressable, TextInput, ScrollView } from "react-native";
 
-import PillListModal from "../PillListModal.js";
+import PillListModal from "./PillListModal.js";
 import TimePicker from "../timer/TimePicker.js";
 
 function SearchModal({ isVisible, onClose, callbackConfirmData }) {
