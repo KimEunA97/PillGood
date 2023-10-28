@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Text, StyleSheet, View, Pressable, TextInput, ScrollView } from "react-native";
 
-import PillListModal from "../PillListModal";
-import { Timepicker } from "../timer/SetTime";
+import PillListModal from "../PillListModal.js";
+import TimePicker from "../timer/TimePicker.js";
 
 function SearchModal({ isVisible, onClose, callbackConfirmData }) {
 
@@ -72,9 +72,10 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
             </View>
           </View>
 
+          {/* 타이머 부분 */}
           <View>
             <Text style={[styles.textStyle, { marginTop: 10 }]}>시간설정</Text>
-            <Timepicker />
+            <TimePicker />
           </View>
 
           {/* 상호작용 버튼 */}
