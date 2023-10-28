@@ -16,6 +16,7 @@ export default function TodayPillScreen() {
     setModalVisible(false)
   }
   const renderData = (data) => {
+    // 기존 리스트에 새로 추가
     const updatedList = [...renderedList, data];
     setRenderedList(updatedList); // 데이터 설정
   };
@@ -29,11 +30,12 @@ export default function TodayPillScreen() {
             <Text style={styles.text}>약 등록하기</Text>
           </Pressable>
         </View>
+        {/* 검색창 */}
         <SearchModal isVisible={isModalVisible} onClose={closeModal} callbackConfirmData={(data) => renderData(data)} />
-
+        {/* 검색결과 렌더링 */}
         {renderedList.map((item, index) => (
           <View key={index} style={styles.selectListStyle}>
-            <Text>{item}</Text>
+            <Text style={styles.listText}>{item}</Text>
           </View>
         ))}
 
@@ -51,7 +53,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   selectListStyle: {
+
+    maxWidth: 350,
     marginTop: 30,
+    backgroundColor: "#007088",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "white"
+  },
+  listText: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 25,
+    color: "white",
   },
   box: {
     width: 300,
