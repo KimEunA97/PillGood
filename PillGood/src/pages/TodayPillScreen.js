@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable, Modal, ScrollView } from "react-native";
 import SearchModal from "../components/modal/searchModal";
-import PillListModal from "../components/PillListModal";
+import PillListModal from "../components/modal/PillListModal";
 
 export default function TodayPillScreen() {
 
