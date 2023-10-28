@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Modal, ScrollView, Pressable } from "react-native";
 
-import getPillNameData from "../api/getPillNameData";
-import { setModelData } from "../model/pillModel";
+import getPillNameData from "../../api/getPillNameData";
+import { setModelData } from "../../model/pillModel";
 
 const PillListModal = ({ items, callbackSelectedBtn }) => {
 
