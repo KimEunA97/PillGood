@@ -15,16 +15,14 @@ export default function TodayPillScreen() {
   const closeModal = () => {
     setModalVisible(false)
   }
-  const renderData = (data, time) => {
-    // 기존 리스트에 새로 추가
-    if (time) {
-      console.log(time, "UserSelectdTime");
-      setSelectedTime(time);
-    }
-    else {
-      console.log(data, "pills")
-      const updatedList = [...renderedPills, data];
-      setRenderedPills(updatedList); // 데이터 설정
+  const renderData = (data) => {
+    if (data && data.time) {
+      // `data`가 존재하고 `time` 프로퍼티가 있는 경우, 알람 시간 설정
+      setSelectedTime(data.time);
+    } else if (data && data.pillName) {
+      // `data`가 존재하고 `pillName` 프로퍼티가 있는 경우, 약 정보 처리
+      const updatedPills = [...renderedPills, data.pillName];
+      setRenderedPills(updatedPills);
     }
   };
 

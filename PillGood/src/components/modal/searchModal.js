@@ -14,8 +14,8 @@ function SearchModal({ isVisible, onClose, callbackConfirmData, callbackTime }) 
   // 검색버튼
   const handleSearchButton = () => {
     setToggle(true);
-    setSearchingData(["타이"])
-    // setSearchingData((prevData) => [...prevData, text]);
+    // setSearchingData(["타이"])
+    setSearchingData((prevData) => [...prevData, text]);
     console.log(("searchingData is", searchingData))
     onChangeText('');
   }
