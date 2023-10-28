@@ -6,8 +6,8 @@ import PillListModal from "../components/modal/PillListModal";
 export default function TodayPillScreen() {
 
   const [isModalVisible, setModalVisible] = useState(false)
-  const [renderedList, setRenderedList] = useState([]);
-
+  const [renderedPills, setRenderedPills] = useState([]);
+  const [selectedTime, setSelectedTime] = useState(null);
 
   const openModal = () => {
     setModalVisible(true)
@@ -15,10 +15,17 @@ export default function TodayPillScreen() {
   const closeModal = () => {
     setModalVisible(false)
   }
-  const renderData = (data) => {
+  const renderData = (data, time) => {
     // 기존 리스트에 새로 추가
-    const updatedList = [...renderedList, data];
-    setRenderedList(updatedList); // 데이터 설정
+    if (time) {
+      console.log(time, "UserSelectdTime");
+      setSelectedTime(time);
+    }
+    else {
+      console.log(data, "pills")
+      const updatedList = [...renderedPills, data];
+      setRenderedPills(updatedList); // 데이터 설정
+    }
   };
 
   return (
@@ -31,11 +38,17 @@ export default function TodayPillScreen() {
           </Pressable>
         </View>
         {/* 검색창 */}
-        <SearchModal isVisible={isModalVisible} onClose={closeModal} callbackConfirmData={(data) => renderData(data)} />
+        <SearchModal
+          isVisible={isModalVisible} onClose={closeModal}
+          callbackConfirmData={(data) => renderData(data)}
+          callbackTime={(time) => renderData(time)} />
         {/* 검색결과 렌더링 */}
-        {renderedList.map((item, index) => (
+        {renderedPills.map((item, index) => (
           <View key={index} style={styles.selectListStyle}>
             <Text style={styles.listText}>{item}</Text>
+            {selectedTime &&
+              <Text style={styles.listText}>{selectedTime.toLocaleTimeString()}</Text>
+            }
           </View>
         ))}
 

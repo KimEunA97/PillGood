@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Button, Text, Platform, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function TimePicker() {
+export default function TimePicker(callbackTime) {
   // 1초 * 60 = 60초(1분) * 60 = 60분 * 9 = 9시간
   const UTC9 = 1000 * 60 * 60 * 9  //한국시간 UTC+9
   const [time, setTime] = useState(new Date((new Date()).getTime() + UTC9));
@@ -17,20 +17,13 @@ export default function TimePicker() {
       setSelectedTime(selectedTime);
       setTime(selectedTime);
       console.log(selectedTime, "선택된 시간");
-      timeSetDone(); // 시간설정완료
-      pushAlarm();
+      timeSetDone(selectedTime); // 시간설정완료
     }
   };
 
   const timeSetDone = () => {
     setTimeSetToggle(true);
-  }
-
-  const pushAlarm = () => {
-
-    // let leftTime = time - selectedTime
-    // console.log(leftTime, "시간계산");
-
+    callbackTime(selectedTime)
   }
 
   return (
@@ -43,7 +36,6 @@ export default function TimePicker() {
           mode="time"
           is24Hour={false}
           onChange={onChange}
-          on
           display='spinner'
         />
       )}

@@ -4,11 +4,12 @@ import { Modal, Text, StyleSheet, View, Pressable, TextInput, ScrollView } from 
 import PillListModal from "./PillListModal.js";
 import TimePicker from "../timer/TimePicker.js";
 
-function SearchModal({ isVisible, onClose, callbackConfirmData }) {
+function SearchModal({ isVisible, onClose, callbackConfirmData, callbackTime }) {
 
   const [text, onChangeText] = useState('');
   const [searchingData, setSearchingData] = useState([]);
   const [toggle, setToggle] = useState(false)
+  const [selectedTime, setSelectedTime] = useState();
 
   // 검색버튼
   const handleSearchButton = () => {
@@ -25,6 +26,8 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
     onChangeText('');
     setSearchingData([]);
     callbackConfirmData(text);
+    callbackTime(selectedTime);
+    console.dir(selectedTime,"selectedTime");
     onClose();
   }
   // 취소 버튼. 누르면 상태값 초기화
@@ -75,7 +78,7 @@ function SearchModal({ isVisible, onClose, callbackConfirmData }) {
           {/* 타이머 부분 */}
           <View>
             <Text style={[styles.textStyle, { marginTop: 10 }]}>시간설정</Text>
-            <TimePicker />
+            <TimePicker callbackTime={(time)=>setSelectedTime(time)} />
           </View>
 
           {/* 상호작용 버튼 */}
