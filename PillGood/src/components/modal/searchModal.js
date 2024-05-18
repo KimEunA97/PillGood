@@ -75,11 +75,11 @@ function SearchModal({ isVisible, onClose, callbackConfirmData, callbackTime }) 
             </View>
           </View>
 
-          {/* 타이머 부분 */}
+          {/* 타이머 부분
           <View>
             <Text style={[styles.textStyle, { marginTop: 10 }]}>시간설정</Text>
             <TimePicker callbackTime={(time)=>setSelectedTime(time)} />
-          </View>
+          </View> */}
 
           {/* 상호작용 버튼 */}
           <View style={styles.buttonContainer}>
