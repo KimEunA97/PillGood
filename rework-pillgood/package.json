@@ -1,5 +1,5 @@
 {
-  "name": "app-pillgood",
+  "name": "rework-pillgood",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -9,16 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^8.0.1",
-    "axios": "^1.6.8",
     "expo": "~51.0.8",
-    "expo-constants": "^16.0.1",
-    "expo-device": "^6.0.2",
-    "expo-notifications": "^0.28.3",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
-    "react-native": "0.74.1",
-    "@react-native-async-storage/async-storage": "1.23.1"
+    "react-native": "0.74.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
