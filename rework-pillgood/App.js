@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import PillModal from './src/modal/PillModal';
+import { StatusBar } from "expo-status-bar";
+import { Text, View } from "react-native";
+import PillModal from "./src/modal/PillModal";
 
 export default function App() {
   return (
-    <View className='flex-[1] bg-white pt-8 justyfy-center items-center'>
+    <View>
       <StatusBar style="auto" />
-      <PillModal/>
+      <View className="h-full bg-green-100 items-center justify-center">
+        <PillModal />
+      </View>
     </View>
   );
 }
-
