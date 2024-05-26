@@ -3,7 +3,7 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import PillModal from "./src/modal/PillModal";
 import CreateButton from "./src/CreateButton";
 import { useState, useContext, createContext } from "react";
-import { useTailwind } from "nativewind";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const CTX = createContext();
 
@@ -17,6 +17,7 @@ export default function App() {
     console.log(data, "데이터");
     setPillObj(data);
     setComponents((prevComponents) => [...prevComponents, data]);
+    setAppModalVisible(false);
   };
 
   // 생성버튼 : 모달 열기
@@ -30,25 +31,38 @@ export default function App() {
   };
 
   return (
-    <View className="flex-1">
-      <StatusBar style="auto" />
-      <CTX.Provider value={pillObj}>
-        <View className="flex-1 bg-green-100 items-center justify-center">
-          {appModalVisible && (
-            <PillModal
-              modalVisible={appModalVisible}
-              callbackConfirm={handleData}
-              callbackCancelModal={handleCancelModal}
-            />
-          )}
-          {components.map((data, index) => (
-            <ScrollView key={index}>
-              <Text>{data.entpName}</Text>
+    <SafeAreaProvider>
+      <View className="flex-1">
+        <StatusBar style="auto" />
+        <CTX.Provider value={pillObj}>
+          <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              <View className="fixed flex-1 bg-green-100 justify-center items-center">
+                {components.map((data, index) => (
+                  <ScrollView
+                    key={index}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                  >
+                    <View className="justify-center items-center bg-green-50">
+                      <Text>{data.itemName}</Text>
+                      <Text>{data.entpName}</Text>
+                    </View>
+                  </ScrollView>
+                ))}
+                <CreateButton callbackVisible={handleCreateButtonClick} />
+              </View>
             </ScrollView>
-          ))}
-          <CreateButton callbackVisible={handleCreateButtonClick} />
-        </View>
-      </CTX.Provider>
-    </View>
+            {appModalVisible && (
+              <PillModal
+                modalVisible={appModalVisible}
+                callbackConfirm={handleData}
+                callbackCancelModal={handleCancelModal}
+              />
+            )}
+            {/* </View> */}
+          </SafeAreaView>
+        </CTX.Provider>
+      </View>
+    </SafeAreaProvider>
   );
 }

@@ -4,11 +4,8 @@ import { Pressable, View, Text } from "react-native";
 export default function CreateButton({ callbackVisible }) {
   return (
     <View className="">
-      <Pressable
-        className="bg-white border-2"
-        onPress={callbackVisible}
-      >
-        <Text>숲 </Text>
+      <Pressable className="bg-green-800 text-white border-2 p-4" onPress={callbackVisible}>
+        <Text>모달 열기</Text>
       </Pressable>
     </View>
   );
