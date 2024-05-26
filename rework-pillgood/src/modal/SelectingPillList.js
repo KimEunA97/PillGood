@@ -23,7 +23,7 @@ const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
   }, [visible]);
 
   const handleData = (pillData) => {
-    console.log("리스트선택 : ", pillData);
+    // console.log("리스트선택 : ", pillData);
     callbackSelectedData(pillData);
   };
 
@@ -33,7 +33,7 @@ const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
   };
 
   const fetchPillData = async () => {
-    console.log(data2);
+    // console.log(data2);
     /*
     1. 결과값 확인
     2. 결과값에 따른 조건부 컴포넌트 렌더링 
@@ -61,7 +61,7 @@ const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
               {pillData.body.items.map((items, index) => (
                 <Pressable
                   key={index}
-                  onPress={() => handleData(items.itemName)}
+                  onPress={() => handleData(items)}
                 >
                   <Text className="text-white border-2 rounded-lg m-2 p-4 bg-teal-800 text-lg font-bold">
                     {items.itemName}

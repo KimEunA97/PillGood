@@ -3,7 +3,7 @@ import { View, Text, Pressable, TextInput } from "react-native";
 import SelectingPillList from "./SelectingPillList";
 import getPillNameData from "../api/getPillNameData";
 
-export default function PillModal() {
+export default function PillModal({callbackConfirm}) {
   const [pillName, setPillName] = useState("");
   const [listModalVisible, setListModalVisible] = useState(false);
   const [selectToggle, setSelectToggle] = useState(false);
@@ -25,11 +25,19 @@ export default function PillModal() {
     setListModalVisible(true);
   };
 
-  const handleData = (selectedData) => {
+  const handleSelectedData = (selectedData) => {
     // 선택 완료되면 리스트 모달 닫힘.
     setListModalVisible(false);
     // 사용자가 선택한 약 이름 입력칸에 할당
-    setPillName(selectedData);
+    // console.log(selectedData.itemName)
+    setPillName(selectedData.itemName);
+    console.log(selectedData, "선택한 약 데이터")
+  };
+
+  const handleConfirm = () => {
+    // 검색 완료. 모달이 꺼지면서 컴포넌트 생성
+    console.log("confirm");
+    callbackConfirm(selectedData)
   };
 
   return (
@@ -49,7 +57,9 @@ export default function PillModal() {
       </Pressable>
 
       <View className="flex-row space-x-20">
-        <Pressable className="bg-blue-500 border">
+        <Pressable 
+        className="bg-blue-500 border" 
+        onPress={handleConfirm}>
           <Text>확인</Text>
         </Pressable>
 
@@ -63,10 +73,9 @@ export default function PillModal() {
           pillName={pillName}
           visible={listModalVisible}
           setVisible={setListModalVisible}
-          callbackSelectedData={handleData}
+          callbackSelectedData={handleSelectedData}
         />
       )}
-
     </View>
   );
 }
