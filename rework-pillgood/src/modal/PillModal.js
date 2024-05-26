@@ -29,16 +29,16 @@ export default function PillModal({callbackConfirm}) {
     // 선택 완료되면 리스트 모달 닫힘.
     setListModalVisible(false);
     // 사용자가 선택한 약 이름 입력칸에 할당
-    // console.log(selectedData.itemName)
     setPillName(selectedData.itemName);
-    console.log(selectedData, "선택한 약 데이터")
+    handleConfirm(selectedData)
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (data) => {
     // 검색 완료. 모달이 꺼지면서 컴포넌트 생성
-    console.log("confirm");
-    callbackConfirm(selectedData)
+    // console.log("confirm",data)
+    callbackConfirm(data)
   };
+
 
   return (
     <View className="w-80 h-96 justify-center items-center bg-green-700 rounded-lg border-solid border-black border-2 space-y-5">

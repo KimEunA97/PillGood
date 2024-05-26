@@ -7,14 +7,21 @@ import { useState, useContext, createContext } from "react";
 const CTX = createContext();
 
 export default function App() {
-  const [pillObj, setPillObj] = useState(null)
+  const [pillObj, setPillObj] = useState(null);
+
+  const handleData = (data) => {
+    console.log(data, "데이터")
+    setPillObj(data);
+
+  };
+
   return (
     <View>
       <StatusBar style="auto" />
       <View className="h-full bg-green-100 items-center justify-center">
         <CTX.Provider value={pillObj}>
-          <PillModal />
-          <CreateButton />
+          <PillModal callbackConfirm={handleData} />
+          <CreateButton  />
         </CTX.Provider>
       </View>
     </View>
