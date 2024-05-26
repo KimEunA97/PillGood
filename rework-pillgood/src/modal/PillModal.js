@@ -6,7 +6,7 @@ import getPillNameData from "../api/getPillNameData";
 export default function PillModal() {
   const [pillName, setPillName] = useState("");
   const [listModalVisible, setListModalVisible] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [selectToggle, setSelectToggle] = useState(false);
   const [renderList, setRenderList] = useState(false);
 
   const onChangeText = (text) => {
@@ -21,12 +21,15 @@ export default function PillModal() {
     setPillName(text);
 
     // 셀렉트리스트 열기
-    setToggle(!toggle);
+    setSelectToggle(!selectToggle);
     setListModalVisible(true);
   };
 
-  const handleData = () => {
+  const handleData = (selectedData) => {
+    // 선택 완료되면 리스트 모달 닫힘.
     setListModalVisible(false);
+    // 사용자가 선택한 약 이름 입력칸에 할당
+    setPillName(selectedData);
   };
 
   return (
@@ -55,7 +58,7 @@ export default function PillModal() {
         </Pressable>
       </View>
 
-      {toggle && (
+      {selectToggle && (
         <SelectingPillList
           pillName={pillName}
           visible={listModalVisible}
@@ -64,11 +67,6 @@ export default function PillModal() {
         />
       )}
 
-      {/* {renderList && (
-        pillName.map((items,index)=>(
-          <View key={index}>{items}</View>
-        )))
-      } */}
     </View>
   );
 }

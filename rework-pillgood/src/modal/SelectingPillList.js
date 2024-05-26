@@ -8,6 +8,7 @@ import {
   ActivityIndicatorComponent,
 } from "react-native";
 import data from "../../data.json";
+import data2 from '../../data2.json'
 import getPillNameData from "../api/getPillNameData";
 
 const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
@@ -26,13 +27,14 @@ const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
   };
 
   const fetchPillData = async () => {
-    console.log(data);
+    console.log(data2);
     /*
     1. 결과값 확인
-    2. 결과값에 따른 조건부 컴포넌트 렌더링
+    2. 결과값에 따른 조건부 컴포넌트 렌더링 
+    => 해당 선택 리스트 모달은 count > 1 일 시에만 나타남.
     */
     try {
-      const resultData = data;
+      const resultData = data2;
       setPillData(resultData);
       setLoding(false);
     } catch (error) {
