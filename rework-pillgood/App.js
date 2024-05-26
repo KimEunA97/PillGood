@@ -37,15 +37,17 @@ export default function App() {
         <CTX.Provider value={pillObj}>
           <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-              <View className="fixed flex-1 bg-green-100 justify-center items-center">
+              <View className="flex-1 bg-green-100 justify-center items-center">
                 {components.map((data, index) => (
                   <ScrollView
                     key={index}
                     contentContainerStyle={{ flexGrow: 1 }}
                   >
-                    <View className="justify-center items-center bg-green-50">
-                      <Text>{data.itemName}</Text>
-                      <Text>{data.entpName}</Text>
+                    <View className="justify-center items-center bg-green-700 m-4 p-4 space-y-4">
+                      <Text className="text-white font-extrabold text-xl">{data.itemName}</Text>
+                      <View className="border border-white w-80" />
+                      <Text className="text-lg text-white font-bold">{data.entpName}</Text>
+                      <Text className="text-white" >{data.useMethodQesitm}</Text>
                     </View>
                   </ScrollView>
                 ))}
