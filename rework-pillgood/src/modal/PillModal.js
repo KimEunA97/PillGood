@@ -13,6 +13,7 @@ export default function PillModal({
   const [pillName, setPillName] = useState("");
   const [listModalVisible, setListModalVisible] = useState(false);
   const [selectToggle, setSelectToggle] = useState(false);
+  const [selectedPillData, setSelectedPillData] = useState(null);
 
   const onChangeText = (text) => {
     setPillName(text);
@@ -35,12 +36,12 @@ export default function PillModal({
     setListModalVisible(false);
     // 사용자가 선택한 약 이름 입력칸에 할당
     setPillName(selectedData.itemName);
-    handleConfirm(selectedData);
   };
 
   const handleConfirm = (data) => {
     // 검색 완료. 모달이 꺼지면서 컴포넌트 생성
-    callbackConfirm(data);
+    setSelectedPillData(data);
+    callbackConfirm(selectedPillData);
   };
 
   return (
