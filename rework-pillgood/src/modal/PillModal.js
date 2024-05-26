@@ -1,17 +1,32 @@
 import { useState } from "react";
 import { View, Text, Pressable, TextInput } from "react-native";
+import SelectingPillList from "./SelectingPillList";
+import getPillNameData from "../api/getPillNameData";
 
 export default function PillModal() {
   const [pillName, setPillName] = useState("");
+  const [listModalVisible, setListModalVisible] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const [renderList, setRenderList] = useState(false);
 
   const onChangeText = (text) => {
     setPillName(text);
   };
 
+  // 검색 완료 => 데이터 가져오기 + 선택 리스트 열림
   const searchPill = (text) => {
-    console.log(text);
-    onChangeText('');
-    
+    // 입력 칸 초기화
+    onChangeText("");
+    // 데이터 가져오기 : get 요청
+    setPillName(text);
+
+    // 셀렉트리스트 열기
+    setToggle(!toggle);
+    setListModalVisible(true);
+  };
+
+  const handleData = () => {
+    setListModalVisible(false);
   };
 
   return (
@@ -39,6 +54,21 @@ export default function PillModal() {
           <Text>취소</Text>
         </Pressable>
       </View>
+
+      {toggle && (
+        <SelectingPillList
+          pillName={pillName}
+          visible={listModalVisible}
+          setVisible={setListModalVisible}
+          callbackSelectedData={handleData}
+        />
+      )}
+
+      {/* {renderList && (
+        pillName.map((items,index)=>(
+          <View key={index}>{items}</View>
+        )))
+      } */}
     </View>
   );
 }
