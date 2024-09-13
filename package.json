@@ -1,0 +1,13 @@
+{
+  "name": "pillgood",
+  "version": "1.0.0",
+  "description": "사용자 친화적인 건강 알리미 서비스",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd rework-pillgood && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
