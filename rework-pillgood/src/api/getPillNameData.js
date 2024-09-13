@@ -8,8 +8,17 @@ async function getPillNameData(pillName) {
   try {
     const res = await fetch(reqURL);
     const data = await res.json();
-    if (data.body) {
-      return data;
+    if (data.body && data.body.items) {
+      // API의 결과 중 필요한 데이터를 추출하고 모델에 맞게 할당
+      const pillData = data.body.items.map((item) => ({
+        pillName: item.itemName,
+        pillEffect: item.efcyQesitm,
+        pillUsage: item.useMethodQesitm,
+        pillWarning: item.atpnQesitm,
+      }));
+
+      console.log(pillData.pillName); // 모델에 맞게 변환된 데이터 출력
+      return pillData;
     }
   } catch (error) {
     console.error("error", error);

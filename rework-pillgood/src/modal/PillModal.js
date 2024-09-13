@@ -36,20 +36,20 @@ export default function PillModal({
     setListModalVisible(false);
     // 사용자가 선택한 약 이름 입력칸에 할당
     setPillName(selectedData.itemName);
+    setSelectedPillData(data);
   };
 
-  const handleConfirm = (data) => {
-    // 검색 완료. 모달이 꺼지면서 컴포넌트 생성
-    setSelectedPillData(data);
+  const handleConfirm = () => {
+    // 검색 완료. 모달이 완전히 꺼지면서 컴포넌트 생성
     callbackConfirm(selectedPillData);
   };
 
   return (
-    <View
+    <Modal
       visible={modalVisible}
-      className="flex-1 absolute w-80 h-96 justify-center items-center bg-green-700 rounded-lg border-solid border-black border-2 space-y-5"
+      className="w-80 h-96 justify-center items-center rounded-lg border-solid border-black bg-sky-400 border-2 space-y-5"
     >
-      <Text className="text-slate-950">모달</Text>
+      <Text className="text-slate-950 text-2xl">모달</Text>
 
       <TextInput
         className="bg-slate-50 border"
@@ -81,6 +81,6 @@ export default function PillModal({
           callbackSelectedData={handleSelectedData}
         />
       )}
-    </View>
+    </Modal>
   );
 }

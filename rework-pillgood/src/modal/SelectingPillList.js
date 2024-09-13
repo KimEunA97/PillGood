@@ -59,10 +59,7 @@ const SelectingPillList = ({ visible, setVisible, callbackSelectedData }) => {
           ) : (
             <ScrollView className="h-full">
               {pillData.body.items.map((items, index) => (
-                <Pressable
-                  key={index}
-                  onPress={() => handleData(items)}
-                >
+                <Pressable key={index} onPress={() => handleData(items)}>
                   <Text className="text-white border-2 rounded-lg m-2 p-4 bg-teal-800 text-lg font-bold">
                     {items.itemName}
                   </Text>
