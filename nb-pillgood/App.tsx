@@ -15,6 +15,7 @@ import {
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import PillModal from "./components/PillModal";
+import PillListModal from "./components/PillListModal";
 
 // // Define the config
 // const config = {
@@ -28,6 +29,7 @@ import PillModal from "./components/PillModal";
 // declare module "native-base" {
 //   interface ICustomTheme extends MyThemeType {}
 // }
+
 export default function App() {
   const [modalVisible, setModalVisible] = useState(true);
 
@@ -40,10 +42,12 @@ export default function App() {
         flex={1}
       >
         <Button onPress={() => setModalVisible(true)}>눌러보슈</Button>
+        {/* 메인 모달 */}
         <PillModal
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
         />
+        {/* 리스트 모달 */}
       </Center>
     </NativeBaseProvider>
   );
