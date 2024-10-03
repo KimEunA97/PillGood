@@ -9,7 +9,6 @@ interface ListModalProps {
 export default function PillListModal({
   listModalVisible,
   onClose,
-  choosenPill,
 }: ListModalProps) {
   const [choosenPillName, setChoosenPillName] = useState("");
 

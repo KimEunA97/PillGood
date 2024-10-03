@@ -13,9 +13,9 @@ import {
   Box,
   Button,
 } from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
-import PillModal from "./components/PillModal";
-import PillListModal from "./components/PillListModal";
+import NativeBaseIcon from "./src/components/NativeBaseIcon";
+import PillModal from "./src/components/PillModal";
+import PillListModal from "./src/components/PillListModal";
 
 // // Define the config
 // const config = {
@@ -41,7 +41,7 @@ export default function App() {
         px={4}
         flex={1}
       >
-        <Button onPress={() => setModalVisible(true)}>눌러보슈</Button>
+        <Button onPress={() => setModalVisible(true)}>모달이 튀어나와요</Button>
         {/* 메인 모달 */}
         <PillModal
           visible={modalVisible}
