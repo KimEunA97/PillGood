@@ -6,6 +6,7 @@ interface ListModalProps {
   onClose: () => void;
 }
 
+// PillListModal 컴포넌트는 사용자가 약 이름을 입력하고 검색 버튼을 눌렀을 때 등록할 약을 보여준다.
 export default function PillListModal({
   listModalVisible,
   onClose,
