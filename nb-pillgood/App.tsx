@@ -17,14 +17,19 @@ import NativeBaseIcon from "./src/components/NativeBaseIcon";
 import PillModal from "./src/modal/PillModal";
 import PillListModal from "./src/modal/PillListModal";
 
-// // Define the config
-// const config = {
-//   useSystemColorMode: false,
-//   initialColorMode: "dark",
-// };
+// Define the config
+const config = {
+  useSystemColorMode: true,
+  initialColorMode: "light",
+  fonts: {
+    heading: "Roboto",
+    body: "Roboto",
+    mono: "Courier New",
+  },
+};
 
 // // extend the theme
-// export const theme = extendTheme({ config });
+export const theme = extendTheme({ config });
 // type MyThemeType = typeof theme;
 // declare module "native-base" {
 //   interface ICustomTheme extends MyThemeType {}
@@ -34,7 +39,7 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(true);
 
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={theme}>
       <Center
         _dark={{ bg: "blueGray.900" }}
         _light={{ bg: "blueGray.50" }}
@@ -42,12 +47,11 @@ export default function App() {
         flex={1}
       >
         <Button onPress={() => setModalVisible(true)}>모달이 튀어나와요</Button>
-        {/* 메인 모달 */}
+        {/* 메인 검색 모달 */}
         <PillModal
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
         />
-        {/* 리스트 모달 */}
       </Center>
     </NativeBaseProvider>
   );

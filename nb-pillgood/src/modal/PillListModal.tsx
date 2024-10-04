@@ -40,17 +40,16 @@ export default function PillListModal({
               PILL
             </Button>
           </VStack>
+          {choosenPillName && (
+            <Box mt={4}>
+              <Text fontSize="lg" color="white">
+                선택된 약: {choosenPillName}
+              </Text>
+            </Box>
+          )}
         </Modal.Body>
+        <Modal.Footer></Modal.Footer>
       </Modal.Content>
-      <Modal.Footer>
-        {choosenPillName && (
-          <Box mt={4}>
-            <Text fontSize="lg" color="white">
-              선택된 약: {choosenPillName}
-            </Text>
-          </Box>
-        )}
-      </Modal.Footer>
     </Modal>
   );
 }
