@@ -13,9 +13,9 @@ import {
 } from "native-base";
 import { useState } from "react";
 import PillListModal from "./PillListModal";
-import OftenPillBtn from "./OftenPillBtn";
+import OftenPillBtn from "../components/OftenPillBtn";
 import { Feather } from "@expo/vector-icons";
-import EmptyAlert from "./EmptyAlert";
+import EmptyAlert from "../components/EmptyAlert";
 
 interface PillModalProps {
   visible: boolean;
@@ -39,6 +39,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
     );
   };
 
+  // 다음으로 버튼 클릭 시
   const nextButtonClick = () => {
     if (selectedPill.length == 0) {
       setAlertShow(true);
@@ -50,7 +51,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
       <Modal.Content
         minWidth="300px"
         maxWidth="400px"
-        height="1000px"
+        height="600px"
         bgColor="cyan.600"
       >
         <Modal.CloseButton />
@@ -76,15 +77,15 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
                 검색
               </Button>
             </HStack>
-            <Text color="white" fontWeight="bold" fontSize="lg" mb={1}>
+            <Text color="white" fontWeight="bold" fontSize="lg" mt={2} mb={1}>
               자주 찾는 약
             </Text>
             <OftenPillBtn ChoosenOftenPill={handlePillClick} />
             {/* 사람들이 주로 먹는 약을 간편하게 선택할 수 있도록 예시로 추가 : 비타민, 오메가3, 칼숨 등*/}
             {/* 사용자가 선택한 컴포넌트가 추가되는 부분 */}
             {selectedPill.map((pill, index) => (
-              <Box>
-                <HStack alignItems="center" key={index}>
+              <Box key={index}>
+                <HStack alignItems="center">
                   <Button
                     colorScheme="darkBlue"
                     onPress={() => handlePillRemove(index)}

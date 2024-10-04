@@ -14,8 +14,8 @@ import {
   Button,
 } from "native-base";
 import NativeBaseIcon from "./src/components/NativeBaseIcon";
-import PillModal from "./src/components/PillModal";
-import PillListModal from "./src/components/PillListModal";
+import PillModal from "./src/modal/PillModal";
+import PillListModal from "./src/modal/PillListModal";
 
 // // Define the config
 // const config = {

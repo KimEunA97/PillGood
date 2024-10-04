@@ -1,9 +1,14 @@
-import { Button, Modal, Text, VStack } from "native-base";
+import { Box, Button, Modal, Text, VStack } from "native-base";
 import { useState } from "react";
+import pillData from "../../data2.json";
 
 interface ListModalProps {
   listModalVisible: boolean;
   onClose: () => void;
+}
+
+interface pill {
+  data: string[];
 }
 
 // PillListModal 컴포넌트는 사용자가 약 이름을 입력하고 검색 버튼을 눌렀을 때 등록할 약을 보여준다.
@@ -12,6 +17,7 @@ export default function PillListModal({
   onClose,
 }: ListModalProps) {
   const [choosenPillName, setChoosenPillName] = useState("");
+  // const [data, setData] = useState<pill>(pillData.pills);
 
   return (
     <Modal isOpen={listModalVisible} onClose={onClose}>
@@ -28,14 +34,23 @@ export default function PillListModal({
             <Button
               colorScheme="blue"
               onPress={() => {
-                console.log("hello");
+                console.log("data", data);
               }}
             >
-              얼탱이가 없으셈
+              PILL
             </Button>
           </VStack>
         </Modal.Body>
       </Modal.Content>
+      <Modal.Footer>
+        {choosenPillName && (
+          <Box mt={4}>
+            <Text fontSize="lg" color="white">
+              선택된 약: {choosenPillName}
+            </Text>
+          </Box>
+        )}
+      </Modal.Footer>
     </Modal>
   );
 }
