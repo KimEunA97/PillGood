@@ -1,21 +1,9 @@
 import React, { useState } from "react";
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Box,
-  Button,
-} from "native-base";
-import NativeBaseIcon from "./src/components/NativeBaseIcon";
-import PillModal from "./src/modal/PillModal";
-import PillListModal from "./src/modal/PillListModal";
+import { NativeBaseProvider, extendTheme } from "native-base";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import TodayPillPage from "./src/pages/TodayPillPage";
+import PillCalendar from "./src/pages/Pill";
 
 // Define the config
 const config = {
@@ -35,24 +23,17 @@ export const theme = extendTheme({ config });
 //   interface ICustomTheme extends MyThemeType {}
 // }
 
-export default function App() {
-  const [modalVisible, setModalVisible] = useState(true);
+const Tab = createBottomTabNavigator();
 
+export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <Button onPress={() => setModalVisible(true)}>모달이 튀어나와요</Button>
-        {/* 메인 검색 모달 */}
-        <PillModal
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-        />
-      </Center>
+      <NavigationContainer>
+        <Tab.Navigator initialRouteName="오늘의 약">
+          <Tab.Screen name="오늘의 약" component={TodayPillPage} />
+          <Tab.Screen name="일정" component={PillCalendar} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
