@@ -15,6 +15,7 @@ import { useState } from "react";
 import PillListModal from "./PillListModal";
 import OftenPillBtn from "./OftenPillBtn";
 import { Feather } from "@expo/vector-icons";
+import EmptyAlert from "./EmptyAlert";
 
 interface PillModalProps {
   visible: boolean;
@@ -24,6 +25,8 @@ interface PillModalProps {
 export default function PillModal({ visible, onClose }: PillModalProps) {
   const [listModalVisible, setListModalVisible] = useState(false);
   const [selectedPill, setSelectedPill] = useState<string[]>([]);
+
+  const [alertShow, setAlertShow] = useState(false);
 
   // 선택 시 리스트 생성
   const handlePillClick = (pill: string) => {
@@ -36,12 +39,18 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
     );
   };
 
+  const nextButtonClick = () => {
+    if (selectedPill.length == 0) {
+      setAlertShow(true);
+    }
+  };
+
   return (
     <Modal isOpen={visible} onClose={onClose}>
       <Modal.Content
         minWidth="300px"
         maxWidth="400px"
-        height="600px"
+        height="1000px"
         bgColor="cyan.600"
       >
         <Modal.CloseButton />
@@ -102,12 +111,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
             <Button colorScheme="danger" onPress={onClose}>
               닫기
             </Button>
-            <Button
-              colorScheme="teal"
-              onPress={() => {
-                console.log("등록");
-              }}
-            >
+            <Button colorScheme="teal" onPress={nextButtonClick}>
               다음으로
             </Button>
           </HStack>
@@ -117,6 +121,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
         listModalVisible={listModalVisible}
         onClose={() => setListModalVisible(false)}
       />
+      {alertShow && <EmptyAlert onClose={() => setAlertShow(false)} />}
     </Modal>
   );
 }
