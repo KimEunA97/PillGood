@@ -30,9 +30,9 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
     setSelectedPill((prevSelectedPills) => [...prevSelectedPills, pill]);
   };
   // 생성된 요소 삭제 함수
-  const handlePillRemove = (pill: string) => {
+  const handlePillRemove = (index: number) => {
     setSelectedPill((prevSelectedPills) =>
-      prevSelectedPills.filter((item) => item !== pill)
+      prevSelectedPills.filter((_, i) => i !== index)
     );
   };
 
@@ -46,12 +46,12 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
       >
         <Modal.CloseButton />
         <Modal.Header>약 이름 검색하기</Modal.Header>
-        <Modal.Body>
+        <Modal.Body w="100%">
           <VStack space={3} alignItems={"center"}>
-            <Text color="white" fontSize="lg" mb={1}>
+            <Text color="white" fontWeight="bold" fontSize="lg" mb={1}>
               어떤 약을 드시고 계신가요?
             </Text>
-            <HStack>
+            <HStack alignItems="center">
               <Input
                 mx="3"
                 placeholder="약 이름을 입력해 주세요"
@@ -67,18 +67,18 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
                 검색
               </Button>
             </HStack>
-            <Text color="white" fontSize="lg" mb={1}>
+            <Text color="white" fontWeight="bold" fontSize="lg" mb={1}>
               자주 찾는 약
             </Text>
             <OftenPillBtn ChoosenOftenPill={handlePillClick} />
             {/* 사람들이 주로 먹는 약을 간편하게 선택할 수 있도록 예시로 추가 : 비타민, 오메가3, 칼숨 등*/}
             {/* 사용자가 선택한 컴포넌트가 추가되는 부분 */}
-            {selectedPill.map((pill) => (
+            {selectedPill.map((pill, index) => (
               <Box>
-                <HStack alignItems="center">
+                <HStack alignItems="center" key={index}>
                   <Button
                     colorScheme="darkBlue"
-                    onPress={() => handlePillRemove(pill)}
+                    onPress={() => handlePillRemove(index)}
                   >
                     <Text color="white">{pill}</Text>
                   </Button>
@@ -90,7 +90,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
                     borderRadius="full" // 동그란 모양 버튼
                     colorScheme="black" // 버튼 색상
                     variant="solid"
-                    onPress={() => handlePillRemove(pill)}
+                    onPress={() => handlePillRemove(index)}
                   ></IconButton>
                 </HStack>
               </Box>
