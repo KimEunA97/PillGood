@@ -3,11 +3,11 @@ import { NativeBaseProvider, extendTheme } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TodayPillPage from "./src/pages/TodayPillPage";
-import PillCalendar from "./src/pages/Pill";
+import PillCalendar from "./src/pages/PillCalendar";
 
 // Define the config
 const config = {
-  useSystemColorMode: true,
+  useSystemColorMode: false,
   initialColorMode: "light",
   fonts: {
     heading: "Roboto",

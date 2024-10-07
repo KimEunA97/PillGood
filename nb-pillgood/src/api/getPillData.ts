@@ -1,4 +1,4 @@
-import { ApiResponseItem, MedicineItem } from "../model/model";
+import { ApiResponseItem, MedicineItem } from "./model/model";
 
 interface ApiResponse {
   pageNo: number;

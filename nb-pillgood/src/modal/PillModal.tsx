@@ -46,6 +46,11 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
     }
   };
 
+  const handlePillSelect = (pillName: string) => {
+    setSelectedPill((prevPills) => [...prevPills, pillName]);
+    setListModalVisible(false); // 모달 닫기
+  };
+
   return (
     <Modal isOpen={visible} onClose={onClose}>
       <Modal.Content
@@ -119,6 +124,7 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
         </Modal.Footer>
       </Modal.Content>
       <PillListModal
+        onPillSelect={handlePillSelect}
         listModalVisible={listModalVisible}
         onClose={() => setListModalVisible(false)}
       />
