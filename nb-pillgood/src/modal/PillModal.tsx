@@ -23,7 +23,7 @@ interface PillModalProps {
 }
 
 export default function PillModal({ visible, onClose }: PillModalProps) {
-  const [listModalVisible, setListModalVisible] = useState(false);
+  const [listModalVisible, setListModalVisible] = useState(true);
   const [selectedPill, setSelectedPill] = useState<string[]>([]);
 
   const [alertShow, setAlertShow] = useState(false);

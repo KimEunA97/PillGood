@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, Modal, Text, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import pillData from "../../data2.json";
+import { Pressable } from "react-native";
 
 interface ListModalProps {
   listModalVisible: boolean;
@@ -49,8 +50,6 @@ export default function PillListModal({
   onPillSelect,
 }: ListModalProps) {
   const [data, setData] = useState<PillData[]>([]);
-
-  const [choosenPillName, setChoosenPillName] = useState<string[]>([]);
 
   const handlePillClick = (pillName: string) => {
     onPillSelect(pillName);
@@ -108,7 +107,6 @@ export default function PillListModal({
       })
     );
 
-    // 변환된 데이터를 상태에 저장
     setData(transformedData);
   }, []);
 
@@ -123,19 +121,33 @@ export default function PillListModal({
         <Modal.CloseButton />
         <Modal.Header>등록할 약을 선택하세요</Modal.Header>
         <Modal.Body>
-          <VStack alignItems={"center"}>
-            {data.map((pill, index) => (
-              <Button
-                mb={2}
-                key={index}
-                style={{}}
-                colorScheme="blue"
-                onPress={() => handlePillClick(pill.pillName)} // 클릭 시 해당 약 이름을 선택
+          {data.map((pill, index) => (
+            <Pressable
+              onPress={() => handlePillClick(pill.pillName)}
+              style={{
+                width: "100%",
+                marginBottom: 10,
+                backgroundColor: "cyan",
+                borderRadius: 5,
+                padding: 5,
+              }}
+            >
+              <Text
+                style={{
+                  overflow: "visible",
+                  textShadowColor: "white", // 그림자 색상
+                  textShadowOffset: { width: 1, height: 1 }, // 그림자 오프셋
+                }}
+                bold
+                // color={}
+                ellipsizeMode="tail"
+                numberOfLines={2}
               >
                 {pill.pillName}
-              </Button>
-            ))}
-          </VStack>
+              </Text>
+              <Text>{pill.manufacturerName}</Text>
+            </Pressable>
+          ))}
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal.Content>
