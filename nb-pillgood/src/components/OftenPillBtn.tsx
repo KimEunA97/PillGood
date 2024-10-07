@@ -5,7 +5,7 @@ interface OftenPillBtnProps {
 }
 
 export default function OftenPillBtn({ ChoosenOftenPill }: OftenPillBtnProps) {
-  const oftenPill = ["비타민", "오메가3", "아니", "근데", "칼슘"];
+  const oftenPill = ["비타민", "오메가3", "마그네슘", "철분", "칼슘"];
 
   return (
     <Box>
@@ -15,7 +15,6 @@ export default function OftenPillBtn({ ChoosenOftenPill }: OftenPillBtnProps) {
         flexWrap="wrap" // 버튼을 넘칠 때 줄바꿈
         width="100%" // 전체 너비 차지
         space={2}
-        mb={2}
       >
         {oftenPill.map((pill) => (
           <Button
@@ -23,6 +22,7 @@ export default function OftenPillBtn({ ChoosenOftenPill }: OftenPillBtnProps) {
             colorScheme="violet"
             size="sm"
             onPress={() => ChoosenOftenPill(pill)}
+            mb={3}
           >
             <Text color="white" style={{ fontWeight: "bold", fontSize: 12 }}>
               {pill}
