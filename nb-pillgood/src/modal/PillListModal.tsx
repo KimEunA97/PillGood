@@ -127,25 +127,28 @@ export default function PillListModal({
               style={{
                 width: "100%",
                 marginBottom: 10,
-                backgroundColor: "cyan",
+                backgroundColor: "#005db4",
                 borderRadius: 5,
                 padding: 5,
               }}
             >
               <Text
                 style={{
+                  fontSize: 18,
                   overflow: "visible",
-                  textShadowColor: "white", // 그림자 색상
-                  textShadowOffset: { width: 1, height: 1 }, // 그림자 오프셋
+                  // textShadowColor: "white", // 그림자 색상
+                  // textShadowOffset: { width: 1, height: 1 }, // 그림자 오프셋
                 }}
                 bold
-                // color={}
+                color={"white"}
                 ellipsizeMode="tail"
                 numberOfLines={2}
               >
                 {pill.pillName}
               </Text>
-              <Text>{pill.manufacturerName}</Text>
+              <Text color={"light.300"} italic>
+                {pill.manufacturerName}
+              </Text>
             </Pressable>
           ))}
         </Modal.Body>
