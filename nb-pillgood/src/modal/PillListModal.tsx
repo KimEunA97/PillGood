@@ -27,12 +27,25 @@ interface OriginalPillData {
 }
 
 interface PillData {
+  /*
+  precautions: 주의 사항
+  warning: 경고 사항
+  storageMethod: 저장 방법
+  efficacy: 효능
+  drugInteractions: 약물 간 상호 작용
+  imageUrl: 이미지 URL
+  releaseDate: 출시일
+  sideEffects: 부작용
+  lastUpdated: 마지막 업데이트 날짜
+  usageInstructions: 사용 지침
+  */
+
   precautions: string | null;
   warning: string | null;
   businessNumber: string;
   storageMethod: string | null;
   efficacy: string | null;
-  manufacturerName: string;
+  company: string;
   drugInteractions: string | null;
   imageUrl: string | null;
   pillName: string;
@@ -43,7 +56,7 @@ interface PillData {
   usageInstructions: string | null;
 }
 
-// PillListModal 컴포넌트는 사용자가 약 이름을 입력하고 검색 버튼을 눌렀을 때 등록할 약을 보여준다.
+// PillListModal 컴포넌트는 사용자가 약 이름을 입력하고 검색 버튼을 눌렀을 때 요청을 시도한다. 모달이 나타나 검색어와 관련된 요소를 세로로 나열해 보여준다. 이후 원하는 약을 선택하면 등록할 묶음에 포함할 수 있다.
 export default function PillListModal({
   listModalVisible,
   onClose,
@@ -90,12 +103,24 @@ export default function PillListModal({
 
     const transformedData: PillData[] = pillData.body.items.map(
       (pill: OriginalPillData) => ({
+        /*
+          precautions: 주의 사항
+          warning: 경고 사항
+          storageMethod: 저장 방법
+          efficacy: 효능
+          drugInteractions: 약물 간 상호 작용
+          imageUrl: 이미지 URL
+          releaseDate: 출시일
+          sideEffects: 부작용
+          lastUpdated: 마지막 업데이트 날짜
+          usageInstructions: 사용 지침
+        */
         precautions: pill.atpnQesitm,
         warning: pill.atpnWarnQesitm,
         businessNumber: pill.bizrno,
         storageMethod: pill.depositMethodQesitm,
         efficacy: pill.efcyQesitm,
-        manufacturerName: pill.entpName,
+        company: pill.entpName,
         drugInteractions: pill.intrcQesitm,
         imageUrl: pill.itemImage,
         pillName: pill.itemName,
@@ -135,7 +160,6 @@ export default function PillListModal({
               <Text
                 style={{
                   fontSize: 18,
-                  overflow: "visible",
                   // textShadowColor: "white", // 그림자 색상
                   // textShadowOffset: { width: 1, height: 1 }, // 그림자 오프셋
                 }}
@@ -147,7 +171,7 @@ export default function PillListModal({
                 {pill.pillName}
               </Text>
               <Text color={"light.300"} italic>
-                {pill.manufacturerName}
+                {pill.company}
               </Text>
             </Pressable>
           ))}
