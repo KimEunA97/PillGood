@@ -1,6 +1,6 @@
 import { PillResponseItem, PillItem } from "./type/types";
 
-const mapApiResponseToMedicineItem = (data: PillResponseItem): PillItem => {
+const mappingApiPillData = (data: PillResponseItem): PillItem => {
   return {
     company: data.entpName,
     pillName: data.itemName,
@@ -17,14 +17,12 @@ const mapApiResponseToMedicineItem = (data: PillResponseItem): PillItem => {
 };
 
 // 3. 데이터 요청 및 매핑
-export const fetchMedicines = async (
-  searchTerm: string
-): Promise<PillItem[]> => {
+export const fetchPill = async (searchTerm: string): Promise<PillItem[]> => {
   const response = await fetch(
     `https://api.example.com/medicines?search=${searchTerm}`
   );
   const data = await response.json();
 
   // API 응답이 배열 형태일 경우 각각을 매핑
-  return data.items.map(mapApiResponseToMedicineItem);
+  return data.items.map(mappingApiPillData);
 };

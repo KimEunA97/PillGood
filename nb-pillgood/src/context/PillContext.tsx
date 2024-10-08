@@ -29,4 +29,10 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-export const useAppState = () => useContext(StateContext);
+// 커스텀 훅을 통해 컨텍스트 사용
+export const useAppState = (): AppStorageData => {
+  const context = useContext(StateContext);
+  if (!context)
+    throw new Error("useAppState must be used within a StateProvider");
+  return context;
+};

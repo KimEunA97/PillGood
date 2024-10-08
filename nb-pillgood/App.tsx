@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TodayPillPage from "./src/pages/TodayPillPage";
 import PillCalendar from "./src/pages/PillCalendar";
 import { AppStorageData } from "./src/api/type/types";
+import { StateProvider } from "./src/context/PillContext";
 
 // Define the config
 const config = {
@@ -29,20 +30,15 @@ const StateContext = createContext<AppStorageData | undefined>(undefined);
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={theme}>
-      <NavigationContainer>
-        <Tab.Navigator initialRouteName="오늘의 약">
-          <Tab.Screen name="오늘의 약" component={TodayPillPage} />
-          <Tab.Screen name="일정" component={PillCalendar} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <StateProvider>
+      <NativeBaseProvider theme={theme}>
+        <NavigationContainer>
+          <Tab.Navigator initialRouteName="오늘의 약">
+            <Tab.Screen name="오늘의 약" component={TodayPillPage} />
+            <Tab.Screen name="일정" component={PillCalendar} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </StateProvider>
   );
 }
-// 커스텀 훅을 통해 컨텍스트 사용
-export const useAppState = (): AppStorageData => {
-  const context = useContext(StateContext);
-  if (!context)
-    throw new Error("useAppState must be used within a StateProvider");
-  return context;
-};
