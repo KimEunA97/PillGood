@@ -17,7 +17,8 @@ import PillListModal from "./PillListModal";
 import OftenPillBtn from "../components/OftenPillBtn";
 import { Feather } from "@expo/vector-icons";
 import EmptyAlert from "../components/EmptyAlert";
-import { Pressable } from "react-native";
+import { Alert, Pressable } from "react-native";
+import AlarmSetModal from "./AlarmSetModal";
 
 interface PillModalProps {
   visible: boolean;
@@ -28,7 +29,8 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
   const [listModalVisible, setListModalVisible] = useState(false);
   const [selectedPill, setSelectedPill] = useState<string[]>([]);
 
-  const [alertShow, setAlertShow] = useState(false);
+  const [EmptyAlertShow, setEmptyAlertShow] = useState(false);
+  const [alarmModalVisible, setAlarmModalVisible] = useState(false);
 
   // 선택 시 리스트 생성
   const handlePillClick = (pill: string) => {
@@ -44,10 +46,13 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
   // 다음으로 버튼 클릭 시
   const nextButtonClick = () => {
     if (selectedPill.length == 0) {
-      setAlertShow(true);
+      setEmptyAlertShow(true);
+    } else {
+      setAlarmModalVisible(true);
     }
   };
 
+  // 리스트 모달 선택 함수
   const handlePillSelect = (pillName: string) => {
     setSelectedPill((prevPills) => [...prevPills, pillName]);
     setListModalVisible(false); // 모달 닫기
@@ -127,22 +132,34 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
           </VStack>
         </Modal.Body>
         <Modal.Footer>
+          {/* 상호작용 버튼 */}
           <HStack flex={1} justifyContent="space-between">
             <Button colorScheme="danger" onPress={onClose}>
               닫기
             </Button>
             <Button colorScheme="teal" onPress={nextButtonClick}>
-              다음으로
+              시간 설정
             </Button>
           </HStack>
         </Modal.Footer>
       </Modal.Content>
+      {/* 리스트 모달 */}
       <PillListModal
         onPillSelect={handlePillSelect}
         listModalVisible={listModalVisible}
         onClose={() => setListModalVisible(false)}
       />
-      {alertShow && <EmptyAlert onClose={() => setAlertShow(false)} />}
+      {/* 약을 하나도 선택하지 않을 시 추가하라는 얼럿 */}
+      {EmptyAlertShow && (
+        <EmptyAlert onClose={() => setEmptyAlertShow(false)} />
+      )}
+      {/* 추가된 약이 하나 이상이고, 시간 설정 버튼이 눌리면(true) => 알람 설정 모달이 열림. */}
+      {selectedPill.length > 0 && alarmModalVisible && (
+        <AlarmSetModal
+          alarmModalVisible={alarmModalVisible}
+          onClose={() => setAlarmModalVisible(false)}
+        />
+      )}
     </Modal>
   );
 }
