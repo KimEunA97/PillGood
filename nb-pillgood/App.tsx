@@ -26,7 +26,6 @@ export const theme = extendTheme({ config });
 // }
 
 const Tab = createBottomTabNavigator();
-const StateContext = createContext<AppStorageData | undefined>(undefined);
 
 export default function App() {
   return (
