@@ -13,12 +13,13 @@ import {
   WarningOutlineIcon,
 } from "native-base";
 import { useState } from "react";
-import PillListModal from "./PillListModal";
-import OftenPillBtn from "../components/OftenPillBtn";
-import { Feather } from "@expo/vector-icons";
-import EmptyAlert from "../components/EmptyAlert";
 import { Alert, Pressable } from "react-native";
+
+import PillListModal from "./PillListModal";
 import AlarmSetModal from "./AlarmSetModal";
+import OftenPillBtn from "../components/OftenPillBtn";
+import EmptyAlert from "../components/EmptyAlert";
+import { Feather } from "@expo/vector-icons";
 
 interface PillModalProps {
   visible: boolean;

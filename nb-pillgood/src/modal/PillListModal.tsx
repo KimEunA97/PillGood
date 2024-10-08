@@ -2,6 +2,7 @@ import { Box, Button, IconButton, Modal, Text, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import pillData from "../../data2.json";
 import { Pressable } from "react-native";
+import { PillItem } from "../api/type/types";
 
 interface ListModalProps {
   listModalVisible: boolean;
@@ -12,7 +13,6 @@ interface ListModalProps {
 interface OriginalPillData {
   atpnQesitm: string | null;
   atpnWarnQesitm: string | null;
-  bizrno: string;
   depositMethodQesitm: string | null;
   efcyQesitm: string | null;
   entpName: string;
@@ -26,43 +26,13 @@ interface OriginalPillData {
   useMethodQesitm: string | null;
 }
 
-interface PillData {
-  /*
-  precautions: 주의 사항
-  warning: 경고 사항
-  storageMethod: 저장 방법
-  efficacy: 효능
-  drugInteractions: 약물 간 상호 작용
-  imageUrl: 이미지 URL
-  releaseDate: 출시일
-  sideEffects: 부작용
-  lastUpdated: 마지막 업데이트 날짜
-  usageInstructions: 사용 지침
-  */
-
-  precautions: string | null;
-  warning: string | null;
-  businessNumber: string;
-  storageMethod: string | null;
-  efficacy: string | null;
-  company: string;
-  drugInteractions: string | null;
-  imageUrl: string | null;
-  pillName: string;
-  pillSeq: string;
-  releaseDate: string | null;
-  sideEffects: string | null;
-  lastUpdated: string | null;
-  usageInstructions: string | null;
-}
-
 // PillListModal 컴포넌트는 사용자가 약 이름을 입력하고 검색 버튼을 눌렀을 때 요청을 시도한다. 모달이 나타나 검색어와 관련된 요소를 세로로 나열해 보여준다. 이후 원하는 약을 선택하면 등록할 묶음에 포함할 수 있다.
 export default function PillListModal({
   listModalVisible,
   onClose,
   onPillSelect,
 }: ListModalProps) {
-  const [data, setData] = useState<PillData[]>([]);
+  const [data, setData] = useState<PillItem[]>([]);
 
   const handlePillClick = (pillName: string) => {
     onPillSelect(pillName);
@@ -101,7 +71,7 @@ export default function PillListModal({
     //   })
     //   .catch((error) => console.error("Error fetching data:", error));
 
-    const transformedData: PillData[] = pillData.body.items.map(
+    const transformedData: PillItem[] = pillData.body.items.map(
       (pill: OriginalPillData) => ({
         /*
           precautions: 주의 사항
@@ -115,20 +85,19 @@ export default function PillListModal({
           lastUpdated: 마지막 업데이트 날짜
           usageInstructions: 사용 지침
         */
+        company: pill.entpName,
+        pillName: pill.itemName,
         precautions: pill.atpnQesitm,
         warning: pill.atpnWarnQesitm,
-        businessNumber: pill.bizrno,
         storageMethod: pill.depositMethodQesitm,
         efficacy: pill.efcyQesitm,
-        company: pill.entpName,
         drugInteractions: pill.intrcQesitm,
         imageUrl: pill.itemImage,
-        pillName: pill.itemName,
-        pillSeq: pill.itemSeq,
-        releaseDate: pill.openDe,
+        sequenceId: pill.itemSeq,
         sideEffects: pill.seQesitm,
         lastUpdated: pill.updateDe,
-        usageInstructions: pill.useMethodQesitm,
+        usage: pill.useMethodQesitm,
+        ingredients: pill.intrcQesitm,
       })
     );
 

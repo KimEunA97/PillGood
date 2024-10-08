@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TodayPillPage from "./src/pages/TodayPillPage";
 import PillCalendar from "./src/pages/PillCalendar";
+import { AppStorageData } from "./src/api/type/types";
 
 // Define the config
 const config = {
@@ -24,6 +25,7 @@ export const theme = extendTheme({ config });
 // }
 
 const Tab = createBottomTabNavigator();
+const StateContext = createContext<AppStorageData | undefined>(undefined);
 
 export default function App() {
   return (
@@ -37,3 +39,10 @@ export default function App() {
     </NativeBaseProvider>
   );
 }
+// 커스텀 훅을 통해 컨텍스트 사용
+export const useAppState = (): AppStorageData => {
+  const context = useContext(StateContext);
+  if (!context)
+    throw new Error("useAppState must be used within a StateProvider");
+  return context;
+};

@@ -1,23 +1,17 @@
-import { ApiResponseItem, MedicineItem } from "./model/model";
+import { PillResponseItem, PillItem } from "./type/types";
 
-interface ApiResponse {
-  pageNo: number;
-  totalCount: number;
-  numOfRows: number;
-  items: MedicineItem[];
-}
-
-const mapApiResponseToMedicineItem = (data: ApiResponseItem): MedicineItem => {
+const mapApiResponseToMedicineItem = (data: PillResponseItem): PillItem => {
   return {
     company: data.entpName,
-    name: data.itemName,
+    pillName: data.itemName,
     sequenceId: data.itemSeq,
-    effect: data.efcyQesitm,
+    efficacy: data.efcyQesitm,
     usage: data.useMethodQesitm,
     precautions: data.atpnQesitm,
-    ingredients: data.materialName,
-    storage: data.storageMethod,
-    expirationDate: data.validTerm,
+    ingredients: data.intrcQesitm,
+    warning: data.atpnWarnQesitm,
+    storageMethod: data.depositMethodQesitm,
+    sideEffects: data.seQesitm,
     imageUrl: data.itemImage,
   };
 };
@@ -25,7 +19,7 @@ const mapApiResponseToMedicineItem = (data: ApiResponseItem): MedicineItem => {
 // 3. 데이터 요청 및 매핑
 export const fetchMedicines = async (
   searchTerm: string
-): Promise<MedicineItem[]> => {
+): Promise<PillItem[]> => {
   const response = await fetch(
     `https://api.example.com/medicines?search=${searchTerm}`
   );
