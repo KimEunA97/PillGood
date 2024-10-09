@@ -24,8 +24,15 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <StateProvider config={config}>
-      <GluestackUIProvider>{Children}</GluestackUIProvider>
+    <StateProvider>
+      <GluestackUIProvider config={config}>
+        <NavigationContainer>
+          <Tab.Navigator initialRouteName="오늘의 약">
+            <Tab.Screen name="오늘의 약" component={TodayPillPage} />
+            <Tab.Screen name="일정" component={PillCalendar} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </GluestackUIProvider>
     </StateProvider>
   );
 }
