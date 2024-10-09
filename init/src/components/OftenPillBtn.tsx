@@ -1,0 +1,33 @@
+import { Box, Button, HStack, Text } from "@gluestack-ui/themed";
+
+interface OftenPillBtnProps {
+  ChoosenOftenPill: (pill: string) => void;
+}
+
+export default function OftenPillBtn({ ChoosenOftenPill }: OftenPillBtnProps) {
+  const oftenPill = ["비타민", "오메가3", "마그네슘", "철분", "칼슘"];
+
+  return (
+    <Box>
+      <HStack
+        alignItems="center"
+        justifyContent="center"
+        flexWrap="wrap" // 버튼을 넘칠 때 줄바꿈
+        width="100%" // 전체 너비 차지
+      >
+        {oftenPill.map((pill) => (
+          <Button
+            key={pill}
+            size="sm"
+            onPress={() => ChoosenOftenPill(pill)}
+            mb={3}
+          >
+            <Text color="white" style={{ fontWeight: "bold", fontSize: 12 }}>
+              {pill}
+            </Text>
+          </Button>
+        ))}
+      </HStack>
+    </Box>
+  );
+}
