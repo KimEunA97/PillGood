@@ -112,6 +112,7 @@ export default function PillListModal({
         <Modal.Body>
           {data.map((pill, index) => (
             <Pressable
+              key={index}
               onPress={() => handlePillClick(pill.pillName)}
               style={{
                 width: "100%",
