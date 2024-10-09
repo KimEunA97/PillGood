@@ -1,6 +1,6 @@
 import { Box, Button, Modal, Text, VStack } from "@gluestack-ui/themed";
 import { useEffect, useState } from "react";
-import pillData from "../../../nb-pillgood/data2.json";
+import pillData from "../../data2.json";
 import { Pressable } from "react-native";
 import { PillItem } from "../api/type/types";
 

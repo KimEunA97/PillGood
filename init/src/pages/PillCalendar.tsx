@@ -1,4 +1,4 @@
-import { Box } from "native-base";
+import { Box } from "@gluestack-ui/themed";
 
 export default function PillCalendar() {
   return <Box></Box>;
