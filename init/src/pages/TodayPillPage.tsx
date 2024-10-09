@@ -7,7 +7,7 @@ export default function TodayPillPage() {
   const [modalVisible, setModalVisible] = useState(true);
 
   return (
-    <Center px={4} flex={1}>
+    <Center>
       <Button onPress={() => setModalVisible(true)}>
         <Text>모달이 튀어나와요</Text>
       </Button>
