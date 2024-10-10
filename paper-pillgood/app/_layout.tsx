@@ -1,9 +1,12 @@
-import { Stack } from "expo-router";
+// app/_layout.tsx
+import { Tabs } from "expo-router";
 
-export default function RootLayout() {
+export default function Layout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" />
-    </Stack>
+    <Tabs>
+      <Tabs.Screen name="index" options={{ title: "Home" }} />
+      <Tabs.Screen name="profile/index" options={{ title: "Profile" }} />
+      <Tabs.Screen name="settings/index" options={{ title: "Settings" }} />
+    </Tabs>
   );
 }

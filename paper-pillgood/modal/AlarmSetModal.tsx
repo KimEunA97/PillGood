@@ -6,7 +6,7 @@ import {
   HStack,
   Modal,
   Text,
-} from "@gluestack-ui/themed";
+} from "native-base";
 import { useState } from "react";
 
 interface AlarmModalProps {
@@ -23,7 +23,12 @@ export default function AlarmSetModal({
   };
   return (
     <Modal isOpen={alarmModalVisible} onClose={onClose}>
-      <Modal.Content bgColor="cyan.600">
+      <Modal.Content
+        minWidth="300px"
+        maxWidth="400px"
+        height="600px"
+        bgColor="cyan.600"
+      >
         <Modal.CloseButton />
         <Modal.Header>알람 설정하기</Modal.Header>
         <Modal.Body>
@@ -32,19 +37,35 @@ export default function AlarmSetModal({
           <Heading>요일 설정</Heading>
           <Divider mb={2} />
           <HStack justifyContent="space-between">
-            <Button size={"sm"}>월</Button>
-            <Button size={"sm"}>화</Button>
-            <Button size={"sm"}>수</Button>
-            <Button size={"sm"}>목</Button>
-            <Button size={"sm"}>금</Button>
-            <Button size={"sm"}>토</Button>
-            <Button size={"sm"}>일</Button>
+            <Button colorScheme={""} size={"sm"}>
+              월
+            </Button>
+            <Button borderRadius="full" colorScheme={"white"} size={"sm"}>
+              화
+            </Button>
+            <Button colorScheme={"white"} size={"sm"}>
+              수
+            </Button>
+            <Button colorScheme={"white"} size={"sm"}>
+              목
+            </Button>
+            <Button colorScheme={"white"} size={"sm"}>
+              금
+            </Button>
+            <Button colorScheme={"white"} size={"sm"}>
+              토
+            </Button>
+            <Button colorScheme={"white"} size={"sm"}>
+              일
+            </Button>
           </HStack>
         </Modal.Body>
         <Modal.Footer>
           <HStack flex={1} justifyContent="space-between">
             <Button onPress={onClose}>이전으로</Button>
-            <Button onPress={handleSaveToStorage}>등록하기</Button>
+            <Button colorScheme={"emerald"} onPress={handleSaveToStorage}>
+              등록하기
+            </Button>
           </HStack>
         </Modal.Footer>
       </Modal.Content>

@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  Text,
-  VStack,
-} from "@gluestack-ui/themed";
+import { Box, Button, IconButton, Modal, Text, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import pillData from "../../data2.json";
 import { Pressable } from "react-native";
@@ -117,13 +106,17 @@ export default function PillListModal({
 
   return (
     <Modal isOpen={listModalVisible} onClose={onClose}>
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalHeader>등록할 약을 선택하세요</ModalHeader>
-        <ModalBody>
+      <Modal.Content
+        minWidth="300px"
+        maxWidth="400px"
+        height="600px"
+        bgColor="cyan.600"
+      >
+        <Modal.CloseButton />
+        <Modal.Header>등록할 약을 선택하세요</Modal.Header>
+        <Modal.Body>
           {data.map((pill, index) => (
             <Pressable
-              key={index}
               onPress={() => handlePillClick(pill.pillName)}
               style={{
                 width: "100%",
@@ -139,18 +132,21 @@ export default function PillListModal({
                   // textShadowColor: "white", // 그림자 색상
                   // textShadowOffset: { width: 1, height: 1 }, // 그림자 오프셋
                 }}
+                bold
                 color={"white"}
                 ellipsizeMode="tail"
                 numberOfLines={2}
               >
                 {pill.pillName}
               </Text>
-              <Text color={"light.300"}>{pill.company}</Text>
+              <Text color={"light.300"} italic>
+                {pill.company}
+              </Text>
             </Pressable>
           ))}
-        </ModalBody>
-        <ModalFooter></ModalFooter>
-      </ModalContent>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal.Content>
     </Modal>
   );
 }

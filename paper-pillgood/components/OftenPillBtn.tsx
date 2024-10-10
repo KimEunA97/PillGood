@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from "@gluestack-ui/themed";
+import { Box, Button, HStack, Text } from "native-base";
 
 interface OftenPillBtnProps {
   ChoosenOftenPill: (pill: string) => void;
@@ -14,10 +14,12 @@ export default function OftenPillBtn({ ChoosenOftenPill }: OftenPillBtnProps) {
         justifyContent="center"
         flexWrap="wrap" // 버튼을 넘칠 때 줄바꿈
         width="100%" // 전체 너비 차지
+        space={2}
       >
         {oftenPill.map((pill) => (
           <Button
             key={pill}
+            colorScheme="violet"
             size="sm"
             onPress={() => ChoosenOftenPill(pill)}
             mb={3}

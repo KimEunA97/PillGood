@@ -4,10 +4,11 @@ import {
   Center,
   CloseIcon,
   HStack,
+  IconButton,
   Modal,
   Text,
   VStack,
-} from "@gluestack-ui/themed";
+} from "native-base";
 
 interface EmptyAlertProps {
   onClose: () => void;
@@ -17,19 +18,31 @@ export default function EmptyAlert({ onClose }: EmptyAlertProps) {
   return (
     <Alert position="absolute" w="80%" h="30%">
       <VStack
+        space={2}
         flexShrink={1}
+        maxWidth="250px"
         w="100%"
         alignItems="center"
         justifyContent="center"
       >
-        <HStack flexShrink={1} alignItems="center" justifyContent="center">
-          <HStack flexShrink={1}>
+        <HStack
+          flexShrink={1}
+          space={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <HStack flexShrink={1} space={2}>
             <Alert.Icon />
-            <Text fontWeight="medium" color="coolGray.800">
+            <Text
+              fontSize="md"
+              maxW="150px"
+              fontWeight="medium"
+              color="coolGray.800"
+            >
               약을 하나 이상 추가 해주세요!
             </Text>
           </HStack>
-          {/* <IconButton
+          <IconButton
             variant="unstyled"
             _focus={{
               borderWidth: 0,
@@ -38,11 +51,11 @@ export default function EmptyAlert({ onClose }: EmptyAlertProps) {
             borderColor={"light.100"}
             borderWidth={1}
             onPress={onClose}
-            icon={<CloseIcon />}
+            icon={<CloseIcon size="3" />}
             _icon={{
               color: "coolGray.600",
             }}
-          /> */}
+          />
         </HStack>
       </VStack>
     </Alert>
