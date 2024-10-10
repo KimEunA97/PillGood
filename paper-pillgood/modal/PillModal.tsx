@@ -1,17 +1,3 @@
-import {
-  Box,
-  Button,
-  Divider,
-  FormControl,
-  HStack,
-  Icon,
-  IconButton,
-  Input,
-  Modal,
-  Text,
-  VStack,
-  WarningOutlineIcon,
-} from "native-base";
 import { useState } from "react";
 import { Alert, Pressable } from "react-native";
 
