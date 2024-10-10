@@ -10,22 +10,22 @@ import {
 } from "@gluestack-ui/themed";
 
 // Define the config
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: "light",
-  fonts: {
-    heading: "Roboto",
-    body: "Roboto",
-    mono: "Courier New",
-  },
-};
+// const config = {
+//   useSystemColorMode: false,
+//   initialColorMode: "light",
+//   fonts: {
+//     heading: "Roboto",
+//     body: "Roboto",
+//     mono: "Courier New",
+//   },
+// };
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <StateProvider>
-      <GluestackUIProvider config={config}>
+      <GluestackUIProvider>
         <NavigationContainer>
           <Tab.Navigator initialRouteName="오늘의 약">
             <Tab.Screen name="오늘의 약" component={TodayPillPage} />

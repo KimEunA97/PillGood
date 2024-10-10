@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ele-pillgood && npm start",
-    "doc": "cd ele-pillgood && npx expo-doctor"
+    "start": "cd init && npm start",
+    "doc": "cd init && npx expo-doctor"
   },
   "keywords": [],
   "author": "",

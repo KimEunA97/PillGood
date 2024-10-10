@@ -1,7 +1,6 @@
 import { Button, ButtonText, Center } from "@gluestack-ui/themed";
 import PillModal from "../modal/PillModal";
 import { useState } from "react";
-import { Text } from "@gluestack-ui/themed";
 
 export default function TodayPillPage() {
   const [modalVisible, setModalVisible] = useState(true);
