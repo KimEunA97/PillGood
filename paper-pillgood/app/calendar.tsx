@@ -8,8 +8,8 @@ export default function Today() {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <TodayPillPage />
-    </View>
+    <View
+      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+    ></View>
   );
 }

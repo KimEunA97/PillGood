@@ -8,10 +8,12 @@ import EmptyAlert from "../components/EmptyAlert";
 import { Feather } from "@expo/vector-icons";
 import {
   Button,
+  Card,
   Dialog,
   Modal,
   PaperProvider,
   Portal,
+  Provider,
   Text,
 } from "react-native-paper";
 
@@ -54,12 +56,16 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
   };
 
   return (
-    <PaperProvider>
+    <Provider>
       <Portal>
-        <Modal visible={visible} onDismiss={onClose}>
-          <Text variant="bodyMedium">This is simple dialog</Text>
+        <Modal
+          style={{ flex: 1, backgroundColor: "white" }}
+          visible={visible}
+          onDismiss={onClose}
+        >
+          <Text variant="titleLarge">This is simple dialog</Text>
         </Modal>
       </Portal>
-    </PaperProvider>
+    </Provider>
   );
 }
