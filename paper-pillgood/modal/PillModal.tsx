@@ -56,16 +56,19 @@ export default function PillModal({ visible, onClose }: PillModalProps) {
   };
 
   return (
-    <Provider>
-      <Portal>
-        <Modal
-          style={{ flex: 1, backgroundColor: "white" }}
-          visible={visible}
-          onDismiss={onClose}
-        >
-          <Text variant="titleLarge">This is simple dialog</Text>
-        </Modal>
-      </Portal>
-    </Provider>
+    <Modal
+      contentContainerStyle={{
+        backgroundColor: "white",
+        padding: 20,
+        width: "100%",
+      }}
+      visible={visible}
+      onDismiss={onClose}
+    >
+      <Text variant="titleLarge">This is simple dialog</Text>
+      <Text variant="titleLarge">This is simple dialog</Text>
+      <Text variant="titleLarge">This is simple dialog</Text>
+      <Text variant="titleLarge">This is simple dialog</Text>
+    </Modal>
   );
 }
