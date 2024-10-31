@@ -1,3 +1,4 @@
+import TodayPillPage from "@/pages/TodayPillPage";
 import { GluestackUIProvider } from "components/ui/gluestack-ui-provider";
 import { StatusBar } from "expo-status-bar";
 
@@ -7,8 +8,7 @@ export default function App() {
   return (
     <GluestackUIProvider>
       <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
+        <TodayPillPage />
       </View>
     </GluestackUIProvider>
   );
