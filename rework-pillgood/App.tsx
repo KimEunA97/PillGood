@@ -1,6 +1,6 @@
-import TodayPillPage from "@/pages/TodayPillPage";
-import { GluestackUIProvider } from "components/ui/gluestack-ui-provider";
-import { StatusBar } from "expo-status-bar";
+import TodayPillPage from "@/src/pages/TodayPillPage";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import "./global.css";
 
 import { StyleSheet, Text, View } from "react-native";
 
