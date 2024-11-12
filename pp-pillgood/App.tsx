@@ -39,7 +39,9 @@ export default function App() {
     colors: {
       ...MD3LightTheme.colors,
       primary: "#356562",
-      surfaceVariant: "#50948e",
+
+      surface: "#356562",
+      surfaceVariant: "#5daca5",
       accent: "#03dac4",
       text: "#ffffff",
     },

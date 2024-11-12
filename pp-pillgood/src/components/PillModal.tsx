@@ -32,7 +32,10 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
         onDismiss={closeModal}
         contentContainerStyle={styles.modalContainer}
       >
-        <Appbar.Content title="약 등록하기" />
+        <Appbar.Header>
+          <Appbar.BackAction></Appbar.BackAction>
+          <Appbar.Content title="약 등록하기" />
+        </Appbar.Header>
         <View style={styles.modalContent}>
           <Text variant="headlineMedium">약 이름</Text>
           <TextInput
@@ -40,18 +43,24 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
             value={searchPillName}
             onChangeText={(text) => setSearchPillName(text)}
           ></TextInput>
-          <View style={styles.buttonContainer}>
-            <DefaultButton
-              backgroundColor="blue"
-              text="다음으로"
-              onPress={nextButton}
-            />
-            <DefaultButton
-              backgroundColor="red"
-              text="닫기"
-              onPress={closeModal}
-            />
-          </View>
+
+          <TextInput
+            label="약 이름"
+            value={searchPillName}
+            onChangeText={(text) => setSearchPillName(text)}
+          ></TextInput>
+        </View>
+        <View style={styles.buttonContainer}>
+          <DefaultButton
+            backgroundColor="blue"
+            text="다음으로"
+            onPress={nextButton}
+          />
+          <DefaultButton
+            backgroundColor="red"
+            text="닫기"
+            onPress={closeModal}
+          />
         </View>
       </Modal>
     </Portal>
@@ -67,17 +76,14 @@ const styles = StyleSheet.create({
     borderRadius: 10, // 모서리 둥글게 처리
   },
   modalContent: {
-    height: "90%",
+    height: "80%",
     alignItems: "center", // 모달 내용 가운데 정렬
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  bar: {},
-  color: {
-    backgroundColor: "purple",
+    padding: 10,
   },
 });
