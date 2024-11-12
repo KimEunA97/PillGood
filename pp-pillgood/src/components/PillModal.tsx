@@ -7,6 +7,7 @@ import {
   Portal,
   Props,
   Text,
+  TextInput,
   useTheme,
 } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
@@ -22,6 +23,8 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     console.log("다음으로");
   };
 
+  const [searchPillName, setSearchPillName] = useState("");
+
   return (
     <Portal>
       <Modal
@@ -31,7 +34,12 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
       >
         <Appbar.Content title="약 등록하기" />
         <View style={styles.modalContent}>
-          <Text variant="headlineMedium">모달 내용</Text>
+          <Text variant="headlineMedium">약 이름</Text>
+          <TextInput
+            label="약 이름"
+            value={searchPillName}
+            onChangeText={(text) => setSearchPillName(text)}
+          ></TextInput>
           <View style={styles.buttonContainer}>
             <DefaultButton
               backgroundColor="blue"
@@ -64,9 +72,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonContainer: {
-    width: "30%",
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
   },
   bar: {},
+  color: {
+    backgroundColor: "purple",
+  },
 });

@@ -11,7 +11,7 @@ interface DefaultButtonProps {
 
 const DefaultButton: React.FC<DefaultButtonProps> = ({
   text,
-  backgroundColor = "#6200ee", // 기본 배경색은 #6200ee
+  backgroundColor = "#356562", // 기본 배경색은 #6200ee
   textColor = "#ffffff", // 기본 글자색은 흰색
   bold = true,
   onPress,

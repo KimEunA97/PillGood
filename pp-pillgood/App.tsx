@@ -37,11 +37,11 @@ export default function App() {
   const theme = {
     ...MD3LightTheme,
     colors: {
-      ...DefaultTheme.colors,
+      ...MD3LightTheme.colors,
       primary: "#356562",
+      surfaceVariant: "#50948e",
       accent: "#03dac4",
-      background: "#f6f6f6",
-      text: "#000000",
+      text: "#ffffff",
     },
     fonts: configureFonts({ config: fontConfig }),
   };
