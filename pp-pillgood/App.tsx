@@ -16,12 +16,12 @@ import * as SplashScreen from "expo-splash-screen";
 import TodayPillPage from "./src/pages/TodayPillPage";
 
 const fontConfig = {
-  fontFamily: "BMJUA",
+  fontFamily: "GmarketSansTTFMedium",
 };
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    BMJUA: require("./assets/fonts/BMJUA.ttf"),
+    BMJUA: require("./assets/fonts/GmarketSansTTFMedium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
