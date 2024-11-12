@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Button, Modal, Portal, Props, Text } from "react-native-paper";
+import {
+  Appbar,
+  Button,
+  FAB,
+  Modal,
+  Portal,
+  Props,
+  Text,
+  useTheme,
+} from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import DefaultButton from "./DefaultButton";
 
@@ -9,6 +18,10 @@ interface PillModalProps {
 }
 
 export default function PillModal({ visible, closeModal }: PillModalProps) {
+  const nextButton = () => {
+    console.log("다음으로");
+  };
+
   return (
     <Portal>
       <Modal
@@ -16,9 +29,24 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
         onDismiss={closeModal}
         contentContainerStyle={styles.modalContainer}
       >
+        <Appbar.Header>
+          <Appbar.BackAction onPress={closeModal} />
+          <Appbar.Content title="약 새로 등록하기" />
+        </Appbar.Header>
         <View style={styles.modalContent}>
-          <Text>모달 내용</Text>
-          <DefaultButton text="닫기" onPress={closeModal} />
+          <Text variant="headlineMedium">모달 내용</Text>
+          <View style={styles.buttonContainer}>
+            <DefaultButton
+              backgroundColor="blue"
+              text="다음으로"
+              onPress={nextButton}
+            />
+            <DefaultButton
+              backgroundColor="red"
+              text="닫기"
+              onPress={closeModal}
+            />
+          </View>
         </View>
       </Modal>
     </Portal>
@@ -34,7 +62,14 @@ const styles = StyleSheet.create({
     borderRadius: 10, // 모서리 둥글게 처리
   },
   modalContent: {
+    height: "90%",
     alignItems: "center", // 모달 내용 가운데 정렬
     justifyContent: "center",
   },
+  buttonContainer: {
+    width: "30%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  bar: {},
 });
