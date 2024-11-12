@@ -29,10 +29,7 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
         onDismiss={closeModal}
         contentContainerStyle={styles.modalContainer}
       >
-        <Appbar.Header>
-          <Appbar.BackAction onPress={closeModal} />
-          <Appbar.Content title="약 새로 등록하기" />
-        </Appbar.Header>
+        <Appbar.Content title="약 등록하기" />
         <View style={styles.modalContent}>
           <Text variant="headlineMedium">모달 내용</Text>
           <View style={styles.buttonContainer}>

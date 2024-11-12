@@ -6,7 +6,13 @@ import {
   MD3LightTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
+import { useCallback } from "react";
+
 import { DefaultTheme } from "react-native-paper";
+
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
 import TodayPillPage from "./src/pages/TodayPillPage";
 
 const fontConfig = {
@@ -14,6 +20,20 @@ const fontConfig = {
 };
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    BMJUA: require("./assets/fonts/BMJUA.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const theme = {
     ...MD3LightTheme,
     colors: {
@@ -28,7 +48,7 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView onLayout={onLayoutRootView} style={styles.container}>
         <StatusBar style="auto" />
         <TodayPillPage />
       </SafeAreaView>
