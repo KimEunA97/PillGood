@@ -12,6 +12,7 @@ import {
 } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import DefaultButton from "./DefaultButton";
+import PillSearchModal from "./PillSearchModal";
 
 interface PillModalProps {
   visible: boolean;
@@ -19,37 +20,63 @@ interface PillModalProps {
 }
 
 export default function PillModal({ visible, closeModal }: PillModalProps) {
-  const nextButton = () => {
-    console.log("다음으로");
-  };
-
   const [searchPillName, setSearchPillName] = useState("");
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const nextButton = () => {
+    if (currentStep !== 2) {
+      setCurrentStep((prev) => prev + 1);
+    }
+    console.log(currentStep);
+  };
+  const handleCloseModal = () => {
+    setCurrentStep(1);
+    closeModal();
+  };
 
   return (
     <Portal>
       <Modal
         visible={visible}
-        onDismiss={closeModal}
+        onDismiss={handleCloseModal}
         contentContainerStyle={styles.modalContainer}
       >
-        <Appbar.Header>
-          <Appbar.BackAction></Appbar.BackAction>
-          <Appbar.Content title="약 등록하기" />
-        </Appbar.Header>
-        <View style={styles.modalContent}>
-          <Text variant="headlineMedium">약 이름</Text>
-          <TextInput
-            label="약 이름"
-            value={searchPillName}
-            onChangeText={(text) => setSearchPillName(text)}
-          ></TextInput>
+        {currentStep === 1 && (
+          <View style={{ height: "90%" }}>
+            <Appbar.Header>
+              <Appbar.BackAction onPress={handleCloseModal} />
+              <Appbar.Content title="약 등록하기" />
+            </Appbar.Header>
+            <View style={styles.modalContent}>
+              <Text variant="labelLarge">약 이름</Text>
+              <TextInput
+                label="약 이름"
+                value={searchPillName}
+                onChangeText={(text) => setSearchPillName(text)}
+                onSubmitEditing={() => console.log("key")}
+              />
 
-          <TextInput
-            label="약 이름"
-            value={searchPillName}
-            onChangeText={(text) => setSearchPillName(text)}
-          ></TextInput>
-        </View>
+              <TextInput
+                label="약 이름"
+                value={searchPillName}
+                onChangeText={(text) => setSearchPillName(text)}
+              ></TextInput>
+            </View>
+          </View>
+        )}
+
+        {currentStep === 2 && (
+          <View style={{ height: "90%" }}>
+            <Appbar.Header>
+              <Appbar.BackAction onPress={handleCloseModal} />
+              <Appbar.Content title="약 선택하기" />
+            </Appbar.Header>
+            <View style={styles.modalContent}>
+              <Text variant="labelLarge">약 이름</Text>
+            </View>
+          </View>
+        )}
+
         <View style={styles.buttonContainer}>
           <DefaultButton
             backgroundColor="blue"
@@ -59,7 +86,7 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
           <DefaultButton
             backgroundColor="red"
             text="닫기"
-            onPress={closeModal}
+            onPress={handleCloseModal}
           />
         </View>
       </Modal>
@@ -71,7 +98,6 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 0.8,
     backgroundColor: "white", // 모달 배경 색상
-    padding: 20,
     marginHorizontal: 40,
     borderRadius: 10, // 모서리 둥글게 처리
   },
@@ -85,5 +111,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
+    paddingHorizontal: 20,
   },
 });

@@ -42,6 +42,7 @@ export default function App() {
 
       surface: "#356562",
       surfaceVariant: "#5daca5",
+      tertiary: "white",
       accent: "#03dac4",
       text: "#ffffff",
     },
