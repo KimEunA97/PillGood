@@ -21,7 +21,7 @@ const fontConfig = {
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    BMJUA: require("./assets/fonts/GmarketSansTTFMedium.ttf"),
+    GmarketSansTTFMedium: require("./assets/fonts/GmarketSansTTFMedium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
