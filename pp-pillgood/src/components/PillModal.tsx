@@ -56,15 +56,15 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     // 절차.1 검색한다.
     // 절차.2 선택한다.
     // 절차.3 등록한다.
-    if (currentStep !== 3) {
-      setCurrentStep((prev) => prev + 1);
-    }
+    setCurrentStep(3);
     console.log(currentStep);
   };
   // 모달 닫기
   const handleCloseModal = () => {
-    setCurrentStep(1);
-    closeModal();
+    setCurrentStep((prev) => prev - 1);
+    if (currentStep === 1) {
+      closeModal();
+    }
   };
 
   return (
