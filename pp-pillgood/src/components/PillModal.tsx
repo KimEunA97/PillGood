@@ -56,15 +56,25 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     // 절차.1 검색한다.
     // 절차.2 선택한다.
     // 절차.3 등록한다.
-    setCurrentStep(3);
+    if (searchPillName) {
+      setCurrentStep(3);
+    } else {
+      setCurrentStep((prev) => prev + 1);
+    }
     console.log(currentStep);
   };
 
   // 뒤로가기
   const prevButton = () => {
-    setCurrentStep((prev) => prev - 1);
+    console.log(currentStep);
+    if (currentStep > 1) {
+      setCurrentStep((prev) => prev - 1);
+    }
     if (currentStep === 1) {
       closeModal();
+    }
+    if (currentStep === 3) {
+      setCurrentStep(1);
     }
   };
 
@@ -119,21 +129,22 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
             <View style={styles.modalContent}>
               <ScrollView>
                 <View>
-                  {pillData.map((item, index) => (
-                    <View
-                      style={{
-                        marginBottom: 10,
-                        width: "70%",
-                        justifyContent: "center",
-                      }}
-                      key={index}
-                    >
-                      <DefaultButton
-                        text={item.itemName}
-                        onPress={() => handleSelectedData(item.itemName)}
-                      ></DefaultButton>
-                    </View>
-                  ))}
+                  {loading &&
+                    pillData.map((item, index) => (
+                      <View
+                        style={{
+                          marginBottom: 10,
+                          width: "70%",
+                          justifyContent: "center",
+                        }}
+                        key={index}
+                      >
+                        <DefaultButton
+                          text={item.itemName}
+                          onPress={() => handleSelectedData(item.itemName)}
+                        ></DefaultButton>
+                      </View>
+                    ))}
                 </View>
               </ScrollView>
             </View>
