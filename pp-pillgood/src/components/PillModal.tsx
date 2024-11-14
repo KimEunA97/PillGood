@@ -78,9 +78,11 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     }
   };
 
+  // 닫기 버튼
   const handleCloseModal = () => {
     closeModal();
     setCurrentStep(1);
+    setSearchPillName("");
   };
 
   return (
