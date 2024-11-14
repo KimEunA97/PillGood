@@ -10,7 +10,7 @@ import {
   TextInput,
   useTheme,
 } from "react-native-paper";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import DefaultButton from "./DefaultButton";
 import PillSearchModal from "./PillSearchModal";
 
@@ -41,14 +41,16 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     fetchData();
   }, []);
 
+  // 검색 리스트 선택 이벤트
+  const handleSelectedData = (pillName: string) => {
+    setSearchPillName(pillName);
+    setCurrentStep(1);
+  };
+
   // 검색하기 버튼 이벤트
   const searchingPillData = () => {
     setLoading(true);
     setCurrentStep(2);
-  };
-  const handleSelectedData = (pillName: string) => {
-    setSearchPillName(pillName);
-    setCurrentStep(1);
   };
 
   // 다음으로 버튼 이벤트
@@ -58,8 +60,8 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
     // 절차.3 등록한다.
     if (searchPillName) {
       setCurrentStep(3);
-    } else {
-      setCurrentStep((prev) => prev + 1);
+    }
+    if (!searchPillName) {
     }
     console.log(currentStep);
   };
@@ -107,7 +109,7 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
               </Text>
               <View>
                 <TextInput
-                  label="약 이름"
+                  label="약 이름 검색"
                   value={searchPillName}
                   onChangeText={(text) => setSearchPillName(text)}
                   onSubmitEditing={() => console.log("key")}
@@ -130,14 +132,19 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
             </Appbar.Header>
             <View style={styles.modalContent}>
               <ScrollView>
-                <View>
+                <View
+                  style={{
+                    marginTop: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   {loading &&
                     pillData.map((item, index) => (
                       <View
                         style={{
                           marginBottom: 10,
                           width: "70%",
-                          justifyContent: "center",
                         }}
                         key={index}
                       >
@@ -154,11 +161,20 @@ export default function PillModal({ visible, closeModal }: PillModalProps) {
         )}
 
         {currentStep === 3 && (
-          <View>
+          <View style={{ height: "90%" }}>
             <Appbar.Header>
               <Appbar.BackAction onPress={prevButton} />
               <Appbar.Content title="알림 설정 " />
             </Appbar.Header>
+            <ScrollView>
+              <View style={styles.modalContent}>
+                <Text>asd</Text>
+                <Text>asd</Text>
+                <Text>asd</Text>
+                <Text>asd</Text>
+                <Text>asd</Text>
+              </View>
+            </ScrollView>
           </View>
         )}
 
