@@ -7,14 +7,16 @@ interface DefaultButtonProps {
   textColor?: string; // 글자색 (옵션)
   bold?: boolean;
   onPress: () => void; // 클릭 시 실행되는 함수
+  width?: string;
 }
 
 const DefaultButton: React.FC<DefaultButtonProps> = ({
   text,
-  backgroundColor = "#356562", // 기본 배경색은 #6200ee
-  textColor = "#ffffff", // 기본 글자색은 흰색
+  backgroundColor = "#356562",
+  textColor = "#ffffff",
   bold = true,
   onPress,
+  width,
 }) => {
   return (
     <Button
