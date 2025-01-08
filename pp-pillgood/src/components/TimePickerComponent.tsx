@@ -6,16 +6,6 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import DayPickerComp from "./DayPickerComp";
 
-const daysOfWeek = [
-  { label: "일", value: "Sunday" },
-  { label: "월", value: "Monday" },
-  { label: "화", value: "Tuesday" },
-  { label: "수", value: "Wednesday" },
-  { label: "목", value: "Thursday" },
-  { label: "금", value: "Friday" },
-  { label: "토", value: "Saturday" },
-];
-
 export default function TimePickerComponent() {
   const [time, setTime] = useState<Date>(new Date());
   const [show, setShow] = useState<boolean>(false);
