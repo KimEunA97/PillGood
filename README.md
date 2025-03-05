@@ -46,3 +46,5 @@
 | openDe              | 공개일자                                                     |
 | updateDe            | 수정일자                                                     |
 | type                | 응답데이터 형식(xml/json) Default.xml                        |
+
+.
